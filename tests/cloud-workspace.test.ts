@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { mkdir, realpath, rm } from 'node:fs/promises';
+import { mkdir, realpath, rm, writeFile } from 'node:fs/promises';
 import { join, resolve, sep } from 'node:path';
 import test from 'node:test';
+import {unzipSync} from 'fflate';
 import { startJudgeDemo } from '../src/judge-demo.js';
 
 test('the cloud workspace exposes public URLs, enforces its origin and rejects unconfigured native verification', {timeout: 120_000}, async () => {
@@ -29,6 +30,14 @@ test('the cloud workspace exposes public URLs, enforces its origin and rejects u
     assert.equal((await post(cloud.workspaceUrl, 'kane')).status, 409);
     assert.equal((await post(cloud.workspaceUrl, 'unsupported')).status, 400);
     assert.equal((await fetch(demo.url + '/health')).status, 200);
+    await mkdir(join(output, 'run-1'));
+    await writeFile(join(output, 'run-1', 'observation.txt'), 'Actual judge evidence download.');
+    const download = await fetch(demo.url + '/download/run-1.zip');
+    assert.equal(download.status, 200);
+    assert.equal(download.headers.get('content-type'), 'application/zip');
+    const archive = new Uint8Array(await download.arrayBuffer());
+    assert.equal(Number(download.headers.get('content-length')), archive.byteLength);
+    assert.equal(Buffer.from(unzipSync(archive)['observation.txt']!).toString(), 'Actual judge evidence download.');
   } finally {
     await demo.close();
     const target = await realpath(output);

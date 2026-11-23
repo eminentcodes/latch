@@ -24,3 +24,6 @@ Thumbs.db
 /api/build-info.json
 /public/evidence/
 /public/build.json
+
+# Local demo-video production and exports; keep footage and audio off GitHub.
+/video/

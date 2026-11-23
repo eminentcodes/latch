@@ -117,7 +117,8 @@ export async function serveWorkspace(options: {projectRoot: string; artifactsRoo
         const actual = await realpath(join(root, directory));
         if (!actual.startsWith(root + sep) || !(await stat(actual)).isDirectory()) {sendJson(response, 403, {error: 'Report is outside the artifact directory.'}); return;}
         const archive = await evidenceArchive(actual);
-        response.writeHead(200, {'Content-Type': 'application/zip', 'Content-Disposition': `attachment; filename="latch-${directory}.zip"`, 'Cache-Control': 'no-store'});
+        response.writeHead(200, {'Content-Type': 'application/zip', 'Content-Length': String(archive.byteLength),
+          'Content-Disposition': `attachment; filename="latch-${directory}.zip"`, 'Cache-Control': 'no-store'});
         response.end(archive); return;
       }
       if (request.method === 'GET' && url.pathname.startsWith('/reports/')) {

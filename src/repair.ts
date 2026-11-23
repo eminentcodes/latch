@@ -11,7 +11,7 @@ import { runSuite } from './runner.js';
 import type { RunResult } from './types.js';
 import { fingerprintVerification, sameVerificationInputs } from './verification-inputs.js';
 
-const excluded = new Set(['.git', '.vercel', 'node_modules', 'dist', 'artifacts', '.cache', '.testmuai', '.auth']);
+const excluded = new Set(['.git', '.vercel', 'node_modules', 'dist', 'artifacts', '.cache', '.testmuai', '.auth', 'video']);
 export type Snapshot = Record<string, string>;
 export type RepairOptions = {projectRoot: string; runPath: string; contractPath: string; outputDir: string; allowed: string[]};
 const localPatchSchema = z.object({
