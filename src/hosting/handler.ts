@@ -1,7 +1,8 @@
 import { randomUUID } from 'node:crypto';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { Sandbox } from '@vercel/sandbox';
-import { cookieValue, hostingConfig, matchesAccessCode, readTicket, REPOSITORY_URL, sameOrigin,
+import { CHECKOUT_PROBE, validCheckoutRoot } from './checkout.js';
+import { cookieValue, hostingConfig, readTicket, REPOSITORY_URL, sameOrigin,
   SANDBOX_PORTS, SESSION_COOKIE, SESSION_MS, signTicket, type HostingConfig, type SessionTicket } from './session.js';
 
 type Connection = Pick<Sandbox, 'name' | 'status' | 'cwd' | 'domain' | 'runCommand' | 'readFileToBuffer' | 'stop'>;
@@ -18,7 +19,7 @@ class BootstrapFailure extends Error {
   }
 }
 function setupDetails(text: string, config: HostingConfig): string {
-  for (const value of [config.accessCode, config.sessionSecret, config.kaneUsername, config.kaneAccessKey].sort((a, b) => b.length - a.length)) {
+  for (const value of [config.sessionSecret, config.kaneUsername, config.kaneAccessKey].sort((a, b) => b.length - a.length)) {
     if (value) text = text.split(value).join('[redacted]');
   }
   return text.slice(-3000);
@@ -31,28 +32,13 @@ function json(response: ServerResponse, status: number, value: unknown): void {
 function setCookie(response: ServerResponse, value: string, maxAge: number): void {
   response.setHeader('Set-Cookie', `${SESSION_COOKIE}=${value}; HttpOnly; Secure; SameSite=Strict; Path=/api/session; Max-Age=${maxAge}`);
 }
-async function body(request: IncomingMessage): Promise<{accessCode?: unknown}> {
-  if (!request.headers['content-type']?.startsWith('application/json')) throw new Error('Use a JSON request.');
-  const parsed = (request as IncomingMessage & {body?: unknown}).body;
-  if (parsed !== undefined) {
-    const text = typeof parsed === 'string' ? parsed : JSON.stringify(parsed);
-    if (!text || text.length > 2048) throw new Error('Request is too large.');
-    return JSON.parse(text) as {accessCode?: unknown};
-  }
-  let text = '';
-  for await (const chunk of request) {
-    text += chunk;
-    if (text.length > 2048) throw new Error('Request is too large.');
-  }
-  return JSON.parse(text) as {accessCode?: unknown};
-}
 function links(sandbox: Connection) {
   return {workspaceUrl: sandbox.domain(SANDBOX_PORTS.workspace), originalUrl: sandbox.domain(SANDBOX_PORTS.original),
     repairedUrl: sandbox.domain(SANDBOX_PORTS.repaired)};
 }
 async function sessionStatus(sandbox: Connection, ticket: SessionTicket) {
   if (sandbox.status !== 'running') return {state: 'expired', message: 'This demo has ended. Start a new session.'};
-  const content = await sandbox.readFileToBuffer({path: '.cache/latch-cloud-state.json', cwd: sandbox.cwd}, {signal: AbortSignal.timeout(10_000)});
+  const content = await sandbox.readFileToBuffer({path: '.cache/latch-cloud-state.json', cwd: ticket.checkoutRoot ?? sandbox.cwd}, {signal: AbortSignal.timeout(10_000)});
   let state: {state: string; message: string} = {state: 'starting', message: 'Preparing your isolated demo.'};
   if (content && content.length < 4096) {
     const parsed = JSON.parse(content.toString()) as {state?: unknown; message?: unknown};
@@ -102,9 +88,6 @@ export async function handleSession(request: IncomingMessage, response: ServerRe
       json(response, 200, {state: 'stopped', message: 'Your demo has stopped.'}); return;
     }
     if (!config.enabled) {json(response, 503, {error: 'Live sessions are not configured yet. The project owner can finish the Vercel setup.'}); return;}
-    let input: {accessCode?: unknown};
-    try {input = await body(request);} catch {json(response, 400, {error: 'Send a short JSON request with the judge access code.'}); return;}
-    if (!matchesAccessCode(input?.accessCode, config.accessCode)) {json(response, 401, {error: 'The judge access code did not match.'}); return;}
     if (ticket) {
       try {
         const existing = await client.get({name: ticket.name, resume: false, signal: AbortSignal.timeout(15_000)});
@@ -121,8 +104,15 @@ export async function handleSession(request: IncomingMessage, response: ServerRe
       LATCH_PUBLIC_REPAIRED_URL: urls.repairedUrl, LATCH_HOME_URL: config.homeUrl, LATCH_SESSION_EXPIRES_AT: new Date(expiresAt).toISOString(),
       LATCH_KANE_ENABLED: String(config.kaneEnabled)};
     if (config.kaneEnabled) {commandEnv.LT_USERNAME = config.kaneUsername; commandEnv.LT_ACCESS_KEY = config.kaneAccessKey;}
+    let checkoutRoot: string;
     try {
-      const bootstrap = await sandbox.runCommand({cmd: 'node', args: ['scripts/sandbox-bootstrap.mjs'], cwd: sandbox.cwd, detached: true,
+      const probe = await sandbox.runCommand({cmd: 'node', args: ['--input-type=module', '--eval', CHECKOUT_PROBE],
+        cwd: sandbox.cwd, signal: AbortSignal.timeout(10_000)});
+      if (probe.exitCode !== 0) throw new BootstrapFailure(setupDetails(await probe.stderr(), config));
+      const found = JSON.parse(await probe.stdout()) as {checkoutRoot?: unknown};
+      if (!validCheckoutRoot(found.checkoutRoot)) throw new BootstrapFailure('The checkout directory is invalid.');
+      checkoutRoot = found.checkoutRoot;
+      const bootstrap = await sandbox.runCommand({cmd: 'node', args: ['scripts/sandbox-bootstrap.mjs'], cwd: checkoutRoot, detached: true,
         env: commandEnv, signal: AbortSignal.timeout(10_000)});
       const startupWindow = AbortSignal.timeout(2000);
       let ended;
@@ -133,7 +123,7 @@ export async function handleSession(request: IncomingMessage, response: ServerRe
       await sandbox.stop({signal: AbortSignal.timeout(10_000)}).catch(() => undefined);
       throw error;
     }
-    setCookie(response, signTicket({name: sandbox.name, sourceRef: config.sourceRef, expiresAt}, config.sessionSecret), Math.floor(SESSION_MS / 1000));
+    setCookie(response, signTicket({name: sandbox.name, sourceRef: config.sourceRef, expiresAt, checkoutRoot}, config.sessionSecret), Math.floor(SESSION_MS / 1000));
     json(response, 202, {...configuration, state: 'starting', message: 'Preparing your isolated demo.', ...urls,
       expiresAt: new Date(expiresAt).toISOString()});
   } catch (error) {

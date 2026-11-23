@@ -1,6 +1,5 @@
 const form = document.getElementById('launch-form');
 const startButton = document.getElementById('start');
-const accessCode = document.getElementById('access-code');
 const status = document.getElementById('status');
 const session = document.getElementById('session');
 const workspace = document.getElementById('workspace');
@@ -8,9 +7,8 @@ const stopButton = document.getElementById('stop');
 let timer;
 let busy = false;
 
-async function request(method = 'GET', body) {
-  const response = await fetch('/api/session', {method, credentials: 'same-origin', cache: 'no-store',
-    ...(body ? {headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)} : {})});
+async function request(method = 'GET') {
+  const response = await fetch('/api/session', {method, credentials: 'same-origin', cache: 'no-store'});
   const unavailable = 'Live sessions could not be reached. Reload the page to try again.';
   if (!response.headers.get('content-type')?.includes('application/json')) throw new Error(unavailable);
   let data;
@@ -50,7 +48,7 @@ function show(data) {
     workspace.hidden = true;
     document.getElementById('expires').textContent = 'End this session before trying again.';
   }
-  status.textContent = data.message ?? (data.enabled ? 'Enter the judge access code to create your live session.' : 'The owner has not enabled live sessions yet. You can inspect the recorded Kane proof below.');
+  status.textContent = data.message ?? (data.enabled ? 'Start your own live session. No sign-up is needed.' : 'The owner has not enabled live sessions yet. You can inspect the recorded Kane proof below.');
 }
 async function load() {
   try {show(await request());} catch (error) {
@@ -67,8 +65,7 @@ form.addEventListener('submit', async event => {
   startButton.disabled = true;
   status.textContent = 'Preparing your isolated demo...';
   try {
-    const data = await request('POST', {accessCode: accessCode.value});
-    accessCode.value = '';
+    const data = await request('POST');
     show(data);
   } catch (error) {status.textContent = error.message;}
   finally {busy = false; startButton.disabled = false;}

@@ -31,10 +31,9 @@ Before clicking **Deploy**, add these for **Production**:
 | Variable | Value |
 | --- | --- |
 | `LATCH_DEMO_ENABLED` | `true` |
-| `LATCH_DEMO_ACCESS_CODE` | A private, randomly chosen code of 12-128 characters |
 | `LATCH_SESSION_SECRET` | A separate random key of 32-256 characters; keep this owner-only |
 
-Give judges only the access code through your judging instructions. The session key signs the cookie and stays private in Vercel. Keep both values out of GitHub; they are separate from your account credentials. Run `node scripts/create-vercel-settings.mjs` to generate both privately in `.cache/vercel-settings.env`, then copy their values into Vercel.
+The demo is public: visitors click **Start live demo** without a code or sign-up. The session key signs the browser cookie and stays private in Vercel; visitors never need it. Keep it out of GitHub. Run `node scripts/create-vercel-settings.mjs` to generate the two settings privately in `.cache/vercel-settings.env`, then copy them into Vercel. An existing `LATCH_DEMO_ACCESS_CODE` setting can be removed; this build doesn't use it.
 
 For **fresh native Kane verification**, also add:
 
@@ -51,7 +50,7 @@ Enter credentials only in Vercel's environment-variable editor. Do not send keys
 ## Deploy and verify
 
 1. Click **Deploy**, wait for production to become ready, then open its `*.vercel.app` URL.
-2. Enter your judge code and click **Start live demo**. The first session installs the pinned browser runtime; preparation can take several minutes.
+2. Click **Start live demo**. The first session installs the pinned browser runtime; preparation can take several minutes.
 3. Click **Open my live workspace**. Try Morgan's original read and Sam's original update with your own text. Repeat in the repaired app: both return HTTP 403. Avery must still be able to read and edit.
 4. Choose **Browser · quick check** and click **Generate fresh before/after proof**. Confirm two original failures, five repaired passes, a new run ID, actual screenshots, matching contract/input hashes, and unchanged stored data for the rejected update.
 5. Download the **evidence archive** before the session ends. It contains the generated report, screenshots, observations and SHA-256 manifest. Raw vendor packs and account share links stay private.
@@ -62,8 +61,7 @@ Each session has isolated apps and a serialized job. The comparison uses a revie
 
 ## If setup fails
 
-- **Live sessions are not configured:** verify the Production variables and code length, then redeploy. Environment changes apply to new deployments.
-- **Code did not match:** enter the exact configured code. It is never included in reports or saved in browser storage.
+- **Live sessions are not configured:** verify `LATCH_DEMO_ENABLED=true` and the private session key length, then redeploy. Environment changes apply to new deployments.
 - **Sandbox request failed:** check **Runtime Logs** for `/api/session`, the project's **Sandboxes** page and remaining Hobby allowance. Use a GitHub deployment of the current published commit.
 - **Browser preparation failed:** inspect that Sandbox's command logs. Bootstrap uses managed Node 22/Ubuntu and the pinned Playwright Chromium libraries. End the failed session before retrying.
 - **Native Kane incomplete:** verify dedicated username/key validity and available Kane credits in TestMu. The quick check and recorded native proof have distinct engine labels.

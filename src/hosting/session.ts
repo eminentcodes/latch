@@ -1,32 +1,24 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
+import { validCheckoutRoot } from './checkout.js';
 
 export const SESSION_MS = 45 * 60 * 1000;
 export const SESSION_COOKIE = 'latch_demo_session';
 export const SANDBOX_PORTS = {original: 4317, workspace: 4318, repaired: 4319} as const;
 export const REPOSITORY_URL = 'https://github.com/eminentcodes/latch.git';
 
-export type SessionTicket = {name: string; sourceRef: string; expiresAt: number};
+export type SessionTicket = {name: string; sourceRef: string; expiresAt: number; checkoutRoot?: string};
 export type HostingConfig = {
-  enabled: boolean; accessCode: string; sessionSecret: string; sourceRef: string; kaneEnabled: boolean;
+  enabled: boolean; sessionSecret: string; sourceRef: string; kaneEnabled: boolean;
   kaneUsername: string; kaneAccessKey: string; homeUrl: string;
 };
 
 export function hostingConfig(env: NodeJS.ProcessEnv, sourceRef: string, homeUrl: string): HostingConfig {
-  const accessCode = env.LATCH_DEMO_ACCESS_CODE ?? '';
   const sessionSecret = env.LATCH_SESSION_SECRET ?? '';
-  const enabled = env.LATCH_DEMO_ENABLED === 'true' && accessCode.length >= 12 && accessCode.length <= 128
-    && sessionSecret.length >= 32 && sessionSecret.length <= 256
-    && sessionSecret !== accessCode
+  const enabled = env.LATCH_DEMO_ENABLED === 'true' && sessionSecret.length >= 32 && sessionSecret.length <= 256
     && /^[a-f0-9]{40}$/.test(sourceRef);
-  return {enabled, accessCode, sessionSecret, sourceRef, homeUrl,
+  return {enabled, sessionSecret, sourceRef, homeUrl,
     kaneEnabled: env.LATCH_KANE_ENABLED === 'true' && Boolean(env.LT_USERNAME && env.LT_ACCESS_KEY),
     kaneUsername: env.LT_USERNAME ?? '', kaneAccessKey: env.LT_ACCESS_KEY ?? ''};
-}
-
-export function matchesAccessCode(value: unknown, expected: string): boolean {
-  if (typeof value !== 'string' || value.length > 128 || expected.length < 12) return false;
-  const hash = (input: string) => createHmac('sha256', expected).update(input).digest();
-  return timingSafeEqual(hash(value), hash(expected));
 }
 
 function signature(payload: string, secret: string): string {
@@ -50,6 +42,7 @@ export function readTicket(value: string | undefined, secret: string, sourceRef:
     const ticket = JSON.parse(Buffer.from(payload, 'base64url').toString()) as SessionTicket;
     if (!ticket || typeof ticket.name !== 'string' || !/^[a-zA-Z0-9_-]{1,128}$/.test(ticket.name)
       || ticket.sourceRef !== sourceRef || !Number.isSafeInteger(ticket.expiresAt)
+      || (ticket.checkoutRoot !== undefined && !validCheckoutRoot(ticket.checkoutRoot))
       || ticket.expiresAt <= now || ticket.expiresAt > now + SESSION_MS) return null;
     return ticket;
   } catch {return null;}
