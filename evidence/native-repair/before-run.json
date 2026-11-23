@@ -1,0 +1,422 @@
+{
+  "version": 1,
+  "id": "23eaa89a-f3fe-4d0c-adde-6baddf31b463",
+  "name": "Private document permissions",
+  "engine": "kane",
+  "startedAt": "2026-11-22T22:02:03.183Z",
+  "finishedAt": "2026-11-22T22:16:17.229Z",
+  "inputs": {
+    "fixtureHash": "52f22377b589670ef5e4e25138b125c40ab922757633055ca1d8b5c6745b45c7",
+    "scenarioHash": "bfce4197435202323edd96cfe77f6eb0a9d094558052800cc35482c6c38a3cc5",
+    "verifierHash": "5c72b5c8748e60a0a11f26948a623cbd42c8be6045298ff3bec02d7908fe1923"
+  },
+  "commit": null,
+  "contractHash": "779893089565b286f123c9f83a4b29053b59510bcf93a5baa2a096a9236d48c2",
+  "verdict": "failed",
+  "cases": [
+    {
+      "check": {
+        "id": "owner-read",
+        "actor": "owner",
+        "resource": "launch-plan",
+        "action": "read",
+        "expect": "allow"
+      },
+      "actorLabel": "Avery · owner",
+      "resourceLabel": "Orion launch plan",
+      "verdict": "passed",
+      "reason": "The permitted user completed the protected action.",
+      "driver": {
+        "engine": "kane",
+        "state": "passed",
+        "summary": "Opened the requested protected document.\nConfirmed that the “Orion launch plan” heading is visible.\nConfirmed that the exact label “ORION-PRIVATE-2026” is visible.",
+        "durationMs": 185213,
+        "evidence": [
+          {
+            "kind": "events",
+            "path": "before-evidence/cases/owner-read/kane-events.ndjson",
+            "label": "Kane run events"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-read/screenshots/step-8-0.jpg",
+            "label": "Kane screenshot · final step 8"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-read/screenshots/step-7-1.jpg",
+            "label": "Kane screenshot · step 7"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-read/screenshots/step-6-2.jpg",
+            "label": "Kane screenshot · step 6"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-read/screenshots/step-5-3.jpg",
+            "label": "Kane screenshot · step 5"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-read/screenshots/step-4-4.jpg",
+            "label": "Kane screenshot · step 4"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-read/screenshots/step-3-5.jpg",
+            "label": "Kane screenshot · step 3"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-read/screenshots/step-2-6.jpg",
+            "label": "Kane screenshot · step 2"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-read/screenshots/step-1-7.jpg",
+            "label": "Kane screenshot · step 1"
+          }
+        ],
+        "terminal": true,
+        "credits": 17.452055
+      },
+      "observation": {
+        "caseTag": "23eaa89a-f3fe-4d0c-adde-6baddf31b463-owner-read",
+        "actor": "owner",
+        "resource": "launch-plan",
+        "action": "read",
+        "status": 200,
+        "disclosed": true,
+        "beforeHash": "9c1936e585409b00f478e7932b32990b780a788a1d5bdfecc507f1b48577741b",
+        "afterHash": "9c1936e585409b00f478e7932b32990b780a788a1d5bdfecc507f1b48577741b",
+        "at": "2026-11-22T22:03:58.147Z"
+      },
+      "controlId": "owner-read"
+    },
+    {
+      "check": {
+        "id": "other-read",
+        "actor": "other",
+        "resource": "launch-plan",
+        "action": "read",
+        "expect": "deny"
+      },
+      "actorLabel": "Morgan · another workspace",
+      "resourceLabel": "Orion launch plan",
+      "verdict": "failed",
+      "reason": "Another user received the protected document.",
+      "driver": {
+        "engine": "kane",
+        "state": "failed",
+        "summary": "The application allowed the retained test identity to load a document it should not be allowed to read.\nInvestigate the document authorization check for the retained identity and ensure unauthorized requests show an Access denied page without returning or rendering document content.\nevidence: objective_contradiction: GET http://127.0.0.1:53151/api/documents/launch-plan -> 200\nevidence: objective_contradiction: the visible page contains the heading \"Access denied\"",
+        "durationMs": 167480,
+        "evidence": [
+          {
+            "kind": "events",
+            "path": "before-evidence/cases/other-read/kane-events.ndjson",
+            "label": "Kane run events"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/other-read/screenshots/step-7-0.jpg",
+            "label": "Kane screenshot · final step 7"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/other-read/screenshots/step-6-1.jpg",
+            "label": "Kane screenshot · step 6"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/other-read/screenshots/step-5-2.jpg",
+            "label": "Kane screenshot · step 5"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/other-read/screenshots/step-4-3.jpg",
+            "label": "Kane screenshot · step 4"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/other-read/screenshots/step-3-4.jpg",
+            "label": "Kane screenshot · step 3"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/other-read/screenshots/step-2-5.jpg",
+            "label": "Kane screenshot · step 2"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/other-read/screenshots/step-1-6.jpg",
+            "label": "Kane screenshot · step 1"
+          }
+        ],
+        "terminal": true,
+        "credits": 17.3959275
+      },
+      "observation": {
+        "caseTag": "23eaa89a-f3fe-4d0c-adde-6baddf31b463-other-read",
+        "actor": "other",
+        "resource": "launch-plan",
+        "action": "read",
+        "status": 200,
+        "disclosed": true,
+        "beforeHash": "9c1936e585409b00f478e7932b32990b780a788a1d5bdfecc507f1b48577741b",
+        "afterHash": "9c1936e585409b00f478e7932b32990b780a788a1d5bdfecc507f1b48577741b",
+        "at": "2026-11-22T22:06:52.215Z"
+      },
+      "controlId": "owner-read"
+    },
+    {
+      "check": {
+        "id": "viewer-read",
+        "actor": "viewer",
+        "resource": "launch-plan",
+        "action": "read",
+        "expect": "allow"
+      },
+      "actorLabel": "Sam · viewer",
+      "resourceLabel": "Orion launch plan",
+      "verdict": "passed",
+      "reason": "The permitted user completed the protected action.",
+      "driver": {
+        "engine": "kane",
+        "state": "passed",
+        "summary": "Opened the protected Orion launch-plan document.\nConfirmed that the document displayed the heading “Orion launch plan.”\nConfirmed that the document contained the exact text “ORION-PRIVATE-2026.”",
+        "durationMs": 146977,
+        "evidence": [
+          {
+            "kind": "events",
+            "path": "before-evidence/cases/viewer-read/kane-events.ndjson",
+            "label": "Kane run events"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-read/screenshots/step-8-0.jpg",
+            "label": "Kane screenshot · final step 8"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-read/screenshots/step-7-1.jpg",
+            "label": "Kane screenshot · step 7"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-read/screenshots/step-6-2.jpg",
+            "label": "Kane screenshot · step 6"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-read/screenshots/step-5-3.jpg",
+            "label": "Kane screenshot · step 5"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-read/screenshots/step-4-4.jpg",
+            "label": "Kane screenshot · step 4"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-read/screenshots/step-3-5.jpg",
+            "label": "Kane screenshot · step 3"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-read/screenshots/step-2-6.jpg",
+            "label": "Kane screenshot · step 2"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-read/screenshots/step-1-7.jpg",
+            "label": "Kane screenshot · step 1"
+          }
+        ],
+        "terminal": true,
+        "credits": 17.4280225
+      },
+      "observation": {
+        "caseTag": "23eaa89a-f3fe-4d0c-adde-6baddf31b463-viewer-read",
+        "actor": "viewer",
+        "resource": "launch-plan",
+        "action": "read",
+        "status": 200,
+        "disclosed": true,
+        "beforeHash": "9c1936e585409b00f478e7932b32990b780a788a1d5bdfecc507f1b48577741b",
+        "afterHash": "9c1936e585409b00f478e7932b32990b780a788a1d5bdfecc507f1b48577741b",
+        "at": "2026-11-22T22:09:16.060Z"
+      },
+      "controlId": "owner-read"
+    },
+    {
+      "check": {
+        "id": "owner-update",
+        "actor": "owner",
+        "resource": "launch-plan",
+        "action": "update",
+        "expect": "allow"
+      },
+      "actorLabel": "Avery · owner",
+      "resourceLabel": "Orion launch plan",
+      "verdict": "passed",
+      "reason": "The permitted user completed the protected action.",
+      "driver": {
+        "engine": "kane",
+        "state": "passed",
+        "summary": "Requested submission of the proposed content: “Latch synthetic update 23eaa89a-f3fe-4d0c-adde-6baddf31b463-owner-update.”\nEntered the requested content and sent the update request.\nThe page confirmed the submission with the message “Update accepted.”",
+        "durationMs": 136266,
+        "evidence": [
+          {
+            "kind": "events",
+            "path": "before-evidence/cases/owner-update/kane-events.ndjson",
+            "label": "Kane run events"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-update/screenshots/step-8-0.jpg",
+            "label": "Kane screenshot · final step 8"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-update/screenshots/step-7-1.jpg",
+            "label": "Kane screenshot · step 7"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-update/screenshots/step-6-2.jpg",
+            "label": "Kane screenshot · step 6"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-update/screenshots/step-5-3.jpg",
+            "label": "Kane screenshot · step 5"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-update/screenshots/step-4-4.jpg",
+            "label": "Kane screenshot · step 4"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-update/screenshots/step-3-5.jpg",
+            "label": "Kane screenshot · step 3"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-update/screenshots/step-2-6.jpg",
+            "label": "Kane screenshot · step 2"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/owner-update/screenshots/step-1-7.jpg",
+            "label": "Kane screenshot · step 1"
+          }
+        ],
+        "terminal": true,
+        "credits": 24.8203795
+      },
+      "observation": {
+        "caseTag": "23eaa89a-f3fe-4d0c-adde-6baddf31b463-owner-update",
+        "actor": "owner",
+        "resource": "launch-plan",
+        "action": "update",
+        "status": 200,
+        "disclosed": false,
+        "beforeHash": "9c1936e585409b00f478e7932b32990b780a788a1d5bdfecc507f1b48577741b",
+        "afterHash": "b1d155302ef79052fd8ac01526bcdf620d42a99ab48d0fce3a7b786c0d9bc611",
+        "at": "2026-11-22T22:11:54.945Z"
+      },
+      "controlId": "owner-update"
+    },
+    {
+      "check": {
+        "id": "viewer-update",
+        "actor": "viewer",
+        "resource": "launch-plan",
+        "action": "update",
+        "expect": "deny"
+      },
+      "actorLabel": "Sam · viewer",
+      "resourceLabel": "Orion launch plan",
+      "verdict": "failed",
+      "reason": "A forbidden update changed the protected document.",
+      "driver": {
+        "engine": "kane",
+        "state": "failed",
+        "summary": "The permission check allowed a viewer to update the document instead of refusing the request.\nFix the document-update permission check so viewer identities receive a denial response and cannot change the document.\nevidence: objective_contradiction: PUT http://127.0.0.1:53151/api/documents/launch-plan -> 200\nevidence: objective_contradiction: Final verification failed: \"the visible result contains the exact text \"Update denied\"\"",
+        "durationMs": 218049,
+        "evidence": [
+          {
+            "kind": "events",
+            "path": "before-evidence/cases/viewer-update/kane-events.ndjson",
+            "label": "Kane run events"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-9-0.jpg",
+            "label": "Kane screenshot · final step 9"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-8-1.jpg",
+            "label": "Kane screenshot · step 8"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-7-2.jpg",
+            "label": "Kane screenshot · step 7"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-6-3.jpg",
+            "label": "Kane screenshot · step 6"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-5-4.jpg",
+            "label": "Kane screenshot · step 5"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-4-5.jpg",
+            "label": "Kane screenshot · step 4"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-3-6.jpg",
+            "label": "Kane screenshot · step 3"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-2-7.jpg",
+            "label": "Kane screenshot · step 2"
+          },
+          {
+            "kind": "screenshot",
+            "path": "before-evidence/cases/viewer-update/screenshots/step-1-8.jpg",
+            "label": "Kane screenshot · step 1"
+          }
+        ],
+        "terminal": true,
+        "credits": 32.006229499999996
+      },
+      "observation": {
+        "caseTag": "23eaa89a-f3fe-4d0c-adde-6baddf31b463-viewer-update",
+        "actor": "viewer",
+        "resource": "launch-plan",
+        "action": "update",
+        "status": 200,
+        "disclosed": false,
+        "beforeHash": "9c1936e585409b00f478e7932b32990b780a788a1d5bdfecc507f1b48577741b",
+        "afterHash": "5fd897372020c2018659232b558a45a932626899b68222ced88928f7dfccb3a9",
+        "at": "2026-11-22T22:15:17.598Z"
+      },
+      "controlId": "owner-update"
+    }
+  ],
+  "expectedCases": 5,
+  "baseUrl": "http://127.0.0.1:53151",
+  "mode": "vulnerable",
+  "exportNotes": "Recorded evidence export. Result states, observations, IDs and input/source hashes are preserved. Account share links and raw vendor evidence packs are omitted; screenshots and sanitized events are retained. Rerun native verification to generate fresh complete packs."
+}

@@ -1,0 +1,44 @@
+name: Latch native Kane verification
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  kane:
+    if: >-
+      vars.LATCH_KANE_ENABLED == 'true' &&
+      (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: browser-actions/setup-chrome@v1
+      - run: npm ci
+      - run: npm run build
+      - name: Run actual Kane checks with dedicated test credentials
+        env:
+          LT_USERNAME: ${{ secrets.LT_USERNAME }}
+          LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
+        run: |
+          if [ -z "$LT_USERNAME" ] || [ -z "$LT_ACCESS_KEY" ]; then
+            echo 'Native Kane verification needs both dedicated CI credentials.' >&2
+            exit 2
+          fi
+          node dist/src/cli.js run --engine kane --mode secure --out artifacts/kane-proof
+      - name: Retain the actual Kane result and evidence packs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: latch-kane-permission-proof
+          path: artifacts/kane-proof/
+          retention-days: 7

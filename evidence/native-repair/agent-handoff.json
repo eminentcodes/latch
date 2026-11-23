@@ -1,0 +1,32 @@
+{
+  "sourceRunId": "23eaa89a-f3fe-4d0c-adde-6baddf31b463",
+  "method": "active-session-file-patch",
+  "agent": "Codex in the user's active coding session",
+  "input": "repair-prompt.md generated from the fresh complete native Kane failures",
+  "output": "permission-fix.json",
+  "nestedCodexExecution": false,
+  "change": "Remove the vulnerable-mode authorization bypasses, enforce matching workspaces for reads and the editor role for writes, and preserve permitted-user controls.",
+  "verification": {
+    "verdict": "passed",
+    "engine": "kane",
+    "runId": "f8556f4d-110b-481a-a33f-895b22685227",
+    "contractHash": "779893089565b286f123c9f83a4b29053b59510bcf93a5baa2a096a9236d48c2",
+    "mode": "vulnerable",
+    "inputs": {
+      "fixtureHash": "52f22377b589670ef5e4e25138b125c40ab922757633055ca1d8b5c6745b45c7",
+      "scenarioHash": "bfce4197435202323edd96cfe77f6eb0a9d094558052800cc35482c6c38a3cc5",
+      "verifierHash": "5c72b5c8748e60a0a11f26948a623cbd42c8be6045298ff3bec02d7908fe1923"
+    },
+    "repair": {
+      "method": "local-patch",
+      "applied": false,
+      "files": [
+        {
+          "path": "demo/policy.ts",
+          "beforeHash": "632b0d1fb28ca7544dff2d42b2140c375feaacade3f7da5081c1ef8ea542ca25",
+          "afterHash": "4b0facd079272d5349b4ef25a6bb59a854ab1e157c84fa00b54175f2af602f5b"
+        }
+      ]
+    }
+  }
+}

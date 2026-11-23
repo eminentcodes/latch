@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "name": "Private document permissions",
+  "adapter": "document-demo",
+  "baseUrl": "http://127.0.0.1:4317",
+  "actors": [
+    { "id": "owner", "label": "Avery · owner", "fixtureKey": "owner" },
+    { "id": "other", "label": "Morgan · another workspace", "fixtureKey": "other" },
+    { "id": "viewer", "label": "Sam · viewer", "fixtureKey": "viewer" }
+  ],
+  "resources": [
+    {
+      "id": "launch-plan",
+      "label": "Orion launch plan",
+      "path": "/documents/launch-plan",
+      "updatePath": "/probe/documents/launch-plan",
+      "apiPath": "/api/documents/launch-plan",
+      "marker": "ORION-PRIVATE-2026"
+    }
+  ],
+  "checks": [
+    { "id": "owner-read", "actor": "owner", "resource": "launch-plan", "action": "read", "expect": "allow" },
+    { "id": "other-read", "actor": "other", "resource": "launch-plan", "action": "read", "expect": "deny" },
+    { "id": "viewer-read", "actor": "viewer", "resource": "launch-plan", "action": "read", "expect": "allow" },
+    { "id": "owner-update", "actor": "owner", "resource": "launch-plan", "action": "update", "expect": "allow" },
+    { "id": "viewer-update", "actor": "viewer", "resource": "launch-plan", "action": "update", "expect": "deny" }
+  ]
+}

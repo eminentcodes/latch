@@ -1,0 +1,48 @@
+{
+  "name": "latch",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A PR bot that catches permission bugs and proves the fix with Kane.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "latch": "dist/src/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "dev": "npm run build && node dist/src/cli.js dev",
+    "demo": "npm run build && node dist/src/cli.js demo --engine local",
+    "validate": "npm run build && node dist/src/cli.js validate examples/permissions.json",
+    "repair:local": "npm run build && node scripts/local-repair.mjs",
+    "repair:kane": "npm run build && node scripts/local-repair.mjs kane",
+    "review": "npm run build && node scripts/browser-check.mjs",
+    "judge": "npm run build && node scripts/judge-demo.mjs",
+    "review:judge": "npm run build && node scripts/judge-review.mjs",
+    "kane:login": "kane-cli login --oauth",
+    "kane:balance": "kane-cli balance",
+    "kane:report": "npm run build && node scripts/kane-report-check.mjs",
+    "kane:status": "kane-cli whoami"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "fflate": "0.8.3",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@testmuai/kane-cli": "0.10.6",
+    "@types/node": "22.20.5",
+    "playwright": "1.65.1",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "adm-zip": "0.6.1",
+    "glob": "14.0.6",
+    "minimatch": "11.0.9",
+    "pdfjs-dist": "6.5.438",
+    "sharp": "0.35.5"
+  }
+}

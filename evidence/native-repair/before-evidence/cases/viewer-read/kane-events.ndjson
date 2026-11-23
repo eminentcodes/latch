@@ -1,0 +1,23 @@
+{"type":"stream_start","cli_version":"0.10.6","surface":"run","v":1,"ts":"2026-11-22T22:07:59.355Z"}
+{"type":"recording_state","v":1,"ts":"2026-11-22T22:07:59.441Z"}
+{"type":"update_available","v":1,"ts":"2026-11-22T22:08:11.926Z"}
+{"type":"skill_update_available","v":1,"ts":"2026-11-22T22:08:11.960Z"}
+{"type":"bifurcation","v":1,"ts":"2026-11-22T22:08:37.003Z"}
+{"step":2,"status":"running","remark":"Step 1","v":1,"ts":"2026-11-22T22:08:42.448Z"}
+{"step":2,"status":"done","remark":"navigate: Navigate to http://127.0.0.1:53151/login","v":1,"ts":"2026-11-22T22:08:42.482Z"}
+{"step":3,"status":"running","remark":"Step 2","v":1,"ts":"2026-11-22T22:08:44.531Z"}
+{"step":3,"status":"done","remark":"click: Clicking Continue as Sam in identity selection panel","v":1,"ts":"2026-11-22T22:08:51.769Z"}
+{"step":4,"status":"running","remark":"Step 3","v":1,"ts":"2026-11-22T22:08:52.774Z"}
+{"step":4,"status":"done","remark":"wait: PRIMARY: Wait for the visible text \"Signed in as Sam\"","v":1,"ts":"2026-11-22T22:09:02.604Z"}
+{"step":5,"status":"running","remark":"Step 4","v":1,"ts":"2026-11-22T22:09:04.691Z"}
+{"step":5,"status":"done","remark":"wait: Waiting after confirming the visible text \"Signed in as Sam\"","v":1,"ts":"2026-11-22T22:09:09.564Z"}
+{"step":2,"status":"running","remark":"Step 1","v":1,"ts":"2026-11-22T22:09:18.200Z"}
+{"step":2,"status":"done","remark":"navigate: Navigate to http://127.0.0.1:53151/documents/launch-plan?case=23eaa89a-f3fe-4d0c","v":1,"ts":"2026-11-22T22:09:18.220Z"}
+{"step":3,"status":"running","remark":"Step 2","v":1,"ts":"2026-11-22T22:09:22.901Z"}
+{"step":3,"status":"done","remark":"analyze: ANALYZE(textual_visual, 'the visible page contains the exact text \"ORION-PRIVATE","v":1,"ts":"2026-11-22T22:09:32.386Z"}
+{"step":4,"status":"running","remark":"Step 3","v":1,"ts":"2026-11-22T22:09:34.595Z"}
+{"step":4,"status":"done","remark":"assert: the visible page contains the heading \"Orion launch plan\"","v":1,"ts":"2026-11-22T22:09:34.649Z"}
+{"step":5,"status":"running","remark":"Step 4","v":1,"ts":"2026-11-22T22:09:36.622Z"}
+{"step":5,"status":"done","remark":"assert: the visible page contains the exact text \"ORION-PRIVATE-2026\"","v":1,"ts":"2026-11-22T22:09:36.678Z"}
+{"type":"coverage","status":"skipped","reason":"not_assurance_project","v":1,"ts":"2026-11-22T22:10:18.574Z"}
+{"type":"run_end","status":"passed","summary":"Opened the protected Orion launch-plan document.\nConfirmed that the document displayed the heading “Orion launch plan.”\nConfirmed that the document contained the exact text “ORION-PRIVATE-2026.”","reason":"Objective completed","duration":72.2,"credits_consumed":17.4280225,"v":1,"ts":"2026-11-22T22:10:18.575Z"}

@@ -1,0 +1,20 @@
+node_modules/
+dist/
+artifacts/
+.cache/
+.testmuai/
+.env
+.env.*
+!.env.example
+*.evidence
+*.log
+.auth/
+.DS_Store
+Thumbs.db
+
+# Local working instructions, checkpoints and archived planning/research.
+/AGENTS.md
+/agent.md
+/projectplan.md
+/projectplan.*.md
+/research/

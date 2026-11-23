@@ -1,0 +1,21 @@
+{"type":"stream_start","cli_version":"0.10.6","surface":"run","v":1,"ts":"2026-11-22T22:05:11.788Z"}
+{"type":"recording_state","v":1,"ts":"2026-11-22T22:05:11.809Z"}
+{"type":"update_available","v":1,"ts":"2026-11-22T22:05:18.322Z"}
+{"type":"skill_update_available","v":1,"ts":"2026-11-22T22:05:18.369Z"}
+{"type":"bifurcation","v":1,"ts":"2026-11-22T22:05:58.692Z"}
+{"step":2,"status":"running","remark":"Step 1","v":1,"ts":"2026-11-22T22:06:04.122Z"}
+{"step":2,"status":"done","remark":"navigate: Navigate to http://127.0.0.1:53151/login","v":1,"ts":"2026-11-22T22:06:04.148Z"}
+{"step":3,"status":"running","remark":"Step 2","v":1,"ts":"2026-11-22T22:06:12.796Z"}
+{"step":3,"status":"done","remark":"click: Clicking Continue as Morgan","v":1,"ts":"2026-11-22T22:06:27.918Z"}
+{"step":4,"status":"running","remark":"Step 3","v":1,"ts":"2026-11-22T22:06:29.285Z"}
+{"step":4,"status":"done","remark":"wait: PRIMARY: wait for the visible text \"Signed in as Morgan\"","v":1,"ts":"2026-11-22T22:06:39.606Z"}
+{"step":5,"status":"running","remark":"Step 4","v":1,"ts":"2026-11-22T22:06:41.547Z"}
+{"step":5,"status":"done","remark":"wait: Waiting after confirming the visible text \"Signed in as Morgan\"","v":1,"ts":"2026-11-22T22:06:46.890Z"}
+{"step":2,"status":"running","remark":"Step 1","v":1,"ts":"2026-11-22T22:06:54.298Z"}
+{"step":2,"status":"done","remark":"navigate: Navigate to http://127.0.0.1:53151/documents/launch-plan?case=23eaa89a-f3fe-4d0c","v":1,"ts":"2026-11-22T22:06:54.306Z"}
+{"step":3,"status":"running","remark":"Step 2","v":1,"ts":"2026-11-22T22:06:58.883Z"}
+{"step":3,"status":"done","remark":"analyze: the visible page contains the heading \"Access denied\"","v":1,"ts":"2026-11-22T22:07:15.496Z"}
+{"step":4,"status":"running","remark":"Step 3","v":1,"ts":"2026-11-22T22:07:17.463Z"}
+{"step":4,"status":"failed","remark":"assert: the visible page contains the heading \"Access denied\"","v":1,"ts":"2026-11-22T22:07:17.485Z"}
+{"type":"coverage","status":"skipped","reason":"not_assurance_project","v":1,"ts":"2026-11-22T22:07:50.657Z"}
+{"type":"run_end","status":"failed","summary":"The application allowed the retained test identity to load a document it should not be allowed to read.\nInvestigate the document authorization check for the retained identity and ensure unauthorized requests show an Access denied page without returning or rendering document content.\nevidence: objective_contradiction: GET http://127.0.0.1:53151/api/documents/launch-plan -> 200\nevidence: objective_contradiction: the visible page contains the heading \"Access denied\"","reason":"Checkpoint assertion failed: \"the visible page contains the heading \"Access denied\"\"","duration":107.2,"credits_consumed":17.3959275,"v":1,"ts":"2026-11-22T22:07:50.658Z"}

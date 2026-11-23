@@ -1,0 +1,71 @@
+name: Latch local permission proof
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  permission-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - name: Verify the configured fixture with the local development browser
+        run: node dist/src/cli.js run --engine local --mode secure --out artifacts/pr-proof
+      - name: Retain the browser report and proof on failure too
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: latch-local-permission-proof
+          path: artifacts/pr-proof/
+          retention-days: 7
+      - name: Explain the verification boundary
+        if: always()
+        run: echo 'Local development proof. Native Kane verification is a separate configured workflow.' >> "$GITHUB_STEP_SUMMARY"
+
+  pr-report:
+    needs: permission-proof
+    if: >-
+      always() && github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: latch-local-permission-proof
+          path: proof
+      - name: Update the PR with the result and evidence artifact
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('node:fs');
+            const marker = '<!-- latch-local-permission-proof -->';
+            const summary = fs.readFileSync('proof/summary.md', 'utf8');
+            const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `${marker}\n${summary}\n[Open the browser evidence artifact](${url}).\n`;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              ...context.repo, issue_number: context.issue.number, per_page: 100
+            });
+            const existing = comments.find(comment => comment.user.type === 'Bot' && comment.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({...context.repo, comment_id: existing.id, body});
+            } else {
+              await github.rest.issues.createComment({...context.repo, issue_number: context.issue.number, body});
+            }

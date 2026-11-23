@@ -1,0 +1,10 @@
+{
+  "format": "latch-file-patch-v1",
+  "files": [
+    {
+      "path": "demo/policy.ts",
+      "beforeHash": "632b0d1fb28ca7544dff2d42b2140c375feaacade3f7da5081c1ef8ea542ca25",
+      "content": "import type { DemoActor, DemoDocument } from './data.js';\n\nexport type PolicyMode = 'secure' | 'vulnerable' | 'deny-all';\n\n// Explicit seeded regressions are for the local demonstration only.\n// The default mode enforces the declared ownership and role rules.\nexport function mayRead(actor: DemoActor | undefined, document: DemoDocument, mode: PolicyMode): boolean {\n  if (!actor || mode === 'deny-all') return false;\n  return actor.workspace === document.workspace;\n}\n\nexport function mayUpdate(actor: DemoActor | undefined, document: DemoDocument, mode: PolicyMode): boolean {\n  if (!actor || mode === 'deny-all') return false;\n  return actor.workspace === document.workspace && actor.role === 'editor';\n}\n"
+    }
+  ]
+}

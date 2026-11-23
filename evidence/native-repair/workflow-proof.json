@@ -1,0 +1,102 @@
+{
+  "scope": "Native Kane verification of Latch report interaction and evidence previews. The source application repair was verified with native Kane.",
+  "verdict": "passed",
+  "sourceRunIds": {
+    "before": "23eaa89a-f3fe-4d0c-adde-6baddf31b463",
+    "after": "f8556f4d-110b-481a-a33f-895b22685227"
+  },
+  "sourcePermissionEngine": "kane",
+  "contractHash": "779893089565b286f123c9f83a4b29053b59510bcf93a5baa2a096a9236d48c2",
+  "sourceReport": "kane-agent-repair",
+  "driver": {
+    "engine": "kane",
+    "state": "passed",
+    "summary": "Opened the “After · verified repair” report view as requested.\nSelected the “viewer-update” permission case.\nThe selected check showed “HTTP 403 · passed,” with protected data unchanged.\nThe allowed-user control showed “owner-update · passed,” and browser screenshot evidence was visible.\nThe requested review was completed successfully.",
+    "durationMs": 223361,
+    "evidence": [
+      {
+        "kind": "events",
+        "path": "report-workflow/report/kane-events.ndjson",
+        "label": "Kane run events"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-15-0.jpg",
+        "label": "Kane screenshot · final step 15"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-14-1.jpg",
+        "label": "Kane screenshot · step 14"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-13-2.jpg",
+        "label": "Kane screenshot · step 13"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-12-3.jpg",
+        "label": "Kane screenshot · step 12"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-11-4.jpg",
+        "label": "Kane screenshot · step 11"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-10-5.jpg",
+        "label": "Kane screenshot · step 10"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-9-6.jpg",
+        "label": "Kane screenshot · step 9"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-8-7.jpg",
+        "label": "Kane screenshot · step 8"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-7-8.jpg",
+        "label": "Kane screenshot · step 7"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-6-9.jpg",
+        "label": "Kane screenshot · step 6"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-5-10.jpg",
+        "label": "Kane screenshot · step 5"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-4-11.jpg",
+        "label": "Kane screenshot · step 4"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-3-12.jpg",
+        "label": "Kane screenshot · step 3"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-2-13.jpg",
+        "label": "Kane screenshot · step 2"
+      },
+      {
+        "kind": "screenshot",
+        "path": "report-workflow/report/screenshots/step-1-14.jpg",
+        "label": "Kane screenshot · step 1"
+      }
+    ],
+    "terminal": true,
+    "credits": 33.82642
+  },
+  "exportNotes": "Recorded evidence export. Result states, observations, IDs and input/source hashes are preserved. Account share links and raw vendor evidence packs are omitted; screenshots and sanitized events are retained. Rerun native verification to generate fresh complete packs."
+}

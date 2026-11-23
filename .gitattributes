@@ -1,0 +1,7 @@
+# Keep application sources portable and preserve byte-bound build inputs.
+* text=auto eol=lf
+/package.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/package-lock.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.jpg binary
+*.jpeg binary
+*.png binary

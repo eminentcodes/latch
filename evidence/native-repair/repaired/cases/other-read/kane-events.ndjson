@@ -1,0 +1,23 @@
+{"type":"stream_start","cli_version":"0.10.6","surface":"run","v":1,"ts":"2026-11-22T23:04:36.935Z"}
+{"type":"recording_state","v":1,"ts":"2026-11-22T23:04:37.066Z"}
+{"type":"update_available","v":1,"ts":"2026-11-22T23:04:55.453Z"}
+{"type":"skill_update_available","v":1,"ts":"2026-11-22T23:04:55.473Z"}
+{"type":"bifurcation","v":1,"ts":"2026-11-22T23:05:25.336Z"}
+{"step":2,"status":"running","remark":"Step 1","v":1,"ts":"2026-11-22T23:05:31.407Z"}
+{"step":2,"status":"done","remark":"navigate: Navigate to http://127.0.0.1:52040/login","v":1,"ts":"2026-11-22T23:05:31.437Z"}
+{"step":3,"status":"running","remark":"Step 2","v":1,"ts":"2026-11-22T23:05:38.233Z"}
+{"step":3,"status":"done","remark":"click: Clicking Continue as Morgan","v":1,"ts":"2026-11-22T23:05:44.661Z"}
+{"step":4,"status":"running","remark":"Step 3","v":1,"ts":"2026-11-22T23:05:45.939Z"}
+{"step":4,"status":"done","remark":"wait: PRIMARY: wait for the visible text \"Signed in as Morgan\"","v":1,"ts":"2026-11-22T23:05:59.449Z"}
+{"step":5,"status":"running","remark":"Step 4","v":1,"ts":"2026-11-22T23:06:01.599Z"}
+{"step":5,"status":"done","remark":"navigate: PRIMARY: Navigate to http://127.0.0.1:52040/documents/launch-plan?case=f8556f4d-","v":1,"ts":"2026-11-22T23:06:09.068Z"}
+{"step":6,"status":"running","remark":"Step 5","v":1,"ts":"2026-11-22T23:06:11.143Z"}
+{"step":6,"status":"done","remark":"wait: PRIMARY: wait for the heading \"Access denied\" to be visible","v":1,"ts":"2026-11-22T23:06:20.921Z"}
+{"step":7,"status":"running","remark":"Step 6","v":1,"ts":"2026-11-22T23:06:23.024Z"}
+{"step":7,"status":"done","remark":"analyze: the text \"ORION-PRIVATE-2026\" is not visible on this page","v":1,"ts":"2026-11-22T23:06:37.255Z"}
+{"step":8,"status":"running","remark":"Step 7","v":1,"ts":"2026-11-22T23:06:39.293Z"}
+{"step":8,"status":"done","remark":"assert: the visible page contains the heading \"Access denied\"","v":1,"ts":"2026-11-22T23:06:39.360Z"}
+{"step":9,"status":"running","remark":"Step 8","v":1,"ts":"2026-11-22T23:06:41.324Z"}
+{"step":9,"status":"done","remark":"assert: the text \"ORION-PRIVATE-2026\" is not visible on this page","v":1,"ts":"2026-11-22T23:06:41.377Z"}
+{"type":"coverage","status":"skipped","reason":"not_assurance_project","v":1,"ts":"2026-11-22T23:07:09.423Z"}
+{"type":"run_end","status":"passed","summary":"Signed in using the “Continue as Morgan” option, as requested.\nOpened the specified launch-plan document while keeping the Morgan identity.\nThe document showed “Access denied,” and the text “ORION-PRIVATE-2026” was not displayed.","reason":"Objective completed","duration":84,"credits_consumed":19.798834999999997,"v":1,"ts":"2026-11-22T23:07:09.424Z"}

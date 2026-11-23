@@ -1,0 +1,692 @@
+{
+  "kind": "recorded-native-source-repair",
+  "exportedAt": "2026-11-22T23:46:23.079Z",
+  "sourceRunIds": {
+    "before": "23eaa89a-f3fe-4d0c-adde-6baddf31b463",
+    "after": "f8556f4d-110b-481a-a33f-895b22685227"
+  },
+  "contractHash": "779893089565b286f123c9f83a4b29053b59510bcf93a5baa2a096a9236d48c2",
+  "mode": "vulnerable",
+  "inputs": {
+    "fixtureHash": "52f22377b589670ef5e4e25138b125c40ab922757633055ca1d8b5c6745b45c7",
+    "scenarioHash": "bfce4197435202323edd96cfe77f6eb0a9d094558052800cc35482c6c38a3cc5",
+    "verifierHash": "5c72b5c8748e60a0a11f26948a623cbd42c8be6045298ff3bec02d7908fe1923"
+  },
+  "repair": {
+    "method": "local-patch",
+    "applied": false,
+    "files": [
+      {
+        "path": "demo/policy.ts",
+        "beforeHash": "632b0d1fb28ca7544dff2d42b2140c375feaacade3f7da5081c1ef8ea542ca25",
+        "afterHash": "4b0facd079272d5349b4ef25a6bb59a854ab1e157c84fa00b54175f2af602f5b"
+      }
+    ]
+  },
+  "rawEvidencePacks": [
+    {
+      "run": "before/owner-read",
+      "sourcePath": "before-evidence/cases/owner-read/kane.evidence",
+      "sha256": "b61457bb27a460f26193c4b34f8bf5d98f42305d59d5ca0f50ab927a0b824e93",
+      "bytes": 458099
+    },
+    {
+      "run": "before/other-read",
+      "sourcePath": "before-evidence/cases/other-read/kane.evidence",
+      "sha256": "305b5a9104a73bbd7276e756ad2ae8b5f8cb4c3ae8f8ae0d75dc84b2c7bd15fc",
+      "bytes": 429443
+    },
+    {
+      "run": "before/viewer-read",
+      "sourcePath": "before-evidence/cases/viewer-read/kane.evidence",
+      "sha256": "083154fce5d60d3af130700b38a8db5973895bf10b9166de890c60fa164a1eb2",
+      "bytes": 451593
+    },
+    {
+      "run": "before/owner-update",
+      "sourcePath": "before-evidence/cases/owner-update/kane.evidence",
+      "sha256": "11dafacaacfcf6c494fac19eb897e53ab2f23f18034c7c72e2b4a0b7da2df79a",
+      "bytes": 865401
+    },
+    {
+      "run": "before/viewer-update",
+      "sourcePath": "before-evidence/cases/viewer-update/kane.evidence",
+      "sha256": "de5ea41b13a57ffca11a6b8287178f7f329e0c2785c40bd77291f16111564147",
+      "bytes": 899855
+    },
+    {
+      "run": "after/owner-read",
+      "sourcePath": "repaired/cases/owner-read/kane.evidence",
+      "sha256": "308ff2e499af3b230545d915fd5bce59fa636f9e6b45ef0f8667b81d1357fb07",
+      "bytes": 458228
+    },
+    {
+      "run": "after/other-read",
+      "sourcePath": "repaired/cases/other-read/kane.evidence",
+      "sha256": "599dd2d695d53a262e934b7bd39b076b62c0f9d6b528a9c72c644c95f4d45c35",
+      "bytes": 442490
+    },
+    {
+      "run": "after/viewer-read",
+      "sourcePath": "repaired/cases/viewer-read/kane.evidence",
+      "sha256": "80791dd0e2ea585a18464fe4a20bf51c6cbdecab8d414eb2b20717a4fb93860d",
+      "bytes": 451294
+    },
+    {
+      "run": "after/owner-update",
+      "sourcePath": "repaired/cases/owner-update/kane.evidence",
+      "sha256": "23067766ab9111e792e4e573899273f0bbad3ed1fa3afe2811908b8167b7c4d5",
+      "bytes": 898457
+    },
+    {
+      "run": "after/viewer-update",
+      "sourcePath": "repaired/cases/viewer-update/kane.evidence",
+      "sha256": "d2b4efd97b839650176ae12dac274c86c3e4317cb7810be5d25c872a4fb88552",
+      "bytes": 899868
+    },
+    {
+      "run": "report-workflow",
+      "sourcePath": "report/kane.evidence",
+      "sha256": "2be5fc23af325a6975f7fa6de129f5735486d566da66dcc61d0202dce926b84f",
+      "bytes": 2868624
+    }
+  ],
+  "notes": "Recorded evidence export. Result states, observations, IDs and input/source hashes are preserved. Account share links and raw vendor evidence packs are omitted; screenshots and sanitized events are retained. Rerun native verification to generate fresh complete packs.",
+  "files": [
+    {
+      "path": "agent-handoff.json",
+      "bytes": 1355,
+      "sha256": "afc01e14aa8b804de28ce6df5cbac20fb3ceaaf7bb4837396bcd7dc4124fe0c5"
+    },
+    {
+      "path": "application-patch.json",
+      "bytes": 931,
+      "sha256": "de8a64005fc666168cfe83676cceaa404795d5e3b2dfbe22c4e952662d601fd0"
+    },
+    {
+      "path": "before-evidence/cases/other-read/kane-events.ndjson",
+      "bytes": 2761,
+      "sha256": "f5ba74597d3f870be3c266366289dc914da8e9e10d40fa2dbf8dca5f441c9fbd"
+    },
+    {
+      "path": "before-evidence/cases/other-read/screenshots/step-1-6.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/other-read/screenshots/step-2-5.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/other-read/screenshots/step-3-4.jpg",
+      "bytes": 45776,
+      "sha256": "72c6d53c002187d22e9d59110c562b8fcb160d66374e4915c4c224b10f90dd27"
+    },
+    {
+      "path": "before-evidence/cases/other-read/screenshots/step-4-3.jpg",
+      "bytes": 45776,
+      "sha256": "72c6d53c002187d22e9d59110c562b8fcb160d66374e4915c4c224b10f90dd27"
+    },
+    {
+      "path": "before-evidence/cases/other-read/screenshots/step-5-2.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "before-evidence/cases/other-read/screenshots/step-6-1.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "before-evidence/cases/other-read/screenshots/step-7-0.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/kane-events.ndjson",
+      "bytes": 2649,
+      "sha256": "388f433a4642bc85424c5081dac6c6a8cfec6fd70c522e76ee8ed1079e2b91d3"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/screenshots/step-1-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/screenshots/step-2-6.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/screenshots/step-3-5.jpg",
+      "bytes": 45578,
+      "sha256": "76d8d8a1ab2cbd3b89ecea55d5e89ec62b2b9476b571cd6dc21c92cd18b26567"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/screenshots/step-4-4.jpg",
+      "bytes": 45578,
+      "sha256": "76d8d8a1ab2cbd3b89ecea55d5e89ec62b2b9476b571cd6dc21c92cd18b26567"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/screenshots/step-5-3.jpg",
+      "bytes": 38637,
+      "sha256": "1710906691621bf82fbfddba1d639dfc30caee875517c62fd4685802242aec53"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/screenshots/step-6-2.jpg",
+      "bytes": 38637,
+      "sha256": "1710906691621bf82fbfddba1d639dfc30caee875517c62fd4685802242aec53"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/screenshots/step-7-1.jpg",
+      "bytes": 38637,
+      "sha256": "1710906691621bf82fbfddba1d639dfc30caee875517c62fd4685802242aec53"
+    },
+    {
+      "path": "before-evidence/cases/owner-read/screenshots/step-8-0.jpg",
+      "bytes": 38637,
+      "sha256": "1710906691621bf82fbfddba1d639dfc30caee875517c62fd4685802242aec53"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/kane-events.ndjson",
+      "bytes": 2691,
+      "sha256": "c293c1d378990c0a1cfdb30ef12446943bde7944f9c04e96478b87de9213c60e"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/screenshots/step-1-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/screenshots/step-2-6.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/screenshots/step-3-5.jpg",
+      "bytes": 45578,
+      "sha256": "76d8d8a1ab2cbd3b89ecea55d5e89ec62b2b9476b571cd6dc21c92cd18b26567"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/screenshots/step-4-4.jpg",
+      "bytes": 52348,
+      "sha256": "7c6111ea7df9642f12b05660ed34fa4c3223808908b458e6c860af05f75a4e27"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/screenshots/step-5-3.jpg",
+      "bytes": 52348,
+      "sha256": "7c6111ea7df9642f12b05660ed34fa4c3223808908b458e6c860af05f75a4e27"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/screenshots/step-6-2.jpg",
+      "bytes": 58151,
+      "sha256": "450be2fb90334b477a34be355d1d7f8479e1c92cb0b2d2592954585a7ba4c1f6"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/screenshots/step-7-1.jpg",
+      "bytes": 60327,
+      "sha256": "e1f0c9b5f89ab109dce3f4ca65aab7cc8db12bcbb85a7d8092b0e83cb52f09fb"
+    },
+    {
+      "path": "before-evidence/cases/owner-update/screenshots/step-8-0.jpg",
+      "bytes": 60327,
+      "sha256": "e1f0c9b5f89ab109dce3f4ca65aab7cc8db12bcbb85a7d8092b0e83cb52f09fb"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/kane-events.ndjson",
+      "bytes": 2704,
+      "sha256": "86205732cdf52cc4468afd480864074f5d61056dc4b8a1fb060ceac2100e3722"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/screenshots/step-1-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/screenshots/step-2-6.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/screenshots/step-3-5.jpg",
+      "bytes": 45529,
+      "sha256": "1e5ccb608a1b0b4e05d02c8b58e0fec7903a5112494821ab1df43a7a92d404c9"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/screenshots/step-4-4.jpg",
+      "bytes": 45529,
+      "sha256": "1e5ccb608a1b0b4e05d02c8b58e0fec7903a5112494821ab1df43a7a92d404c9"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/screenshots/step-5-3.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/screenshots/step-6-2.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/screenshots/step-7-1.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "before-evidence/cases/viewer-read/screenshots/step-8-0.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/kane-events.ndjson",
+      "bytes": 3165,
+      "sha256": "2bf27d65a3ea644d2c506e61d06ead4f18d4e5e797fbdfcd5817b094e997b41f"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-1-8.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-2-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-3-6.jpg",
+      "bytes": 45529,
+      "sha256": "1e5ccb608a1b0b4e05d02c8b58e0fec7903a5112494821ab1df43a7a92d404c9"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-4-5.jpg",
+      "bytes": 45529,
+      "sha256": "1e5ccb608a1b0b4e05d02c8b58e0fec7903a5112494821ab1df43a7a92d404c9"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-5-4.jpg",
+      "bytes": 52348,
+      "sha256": "7c6111ea7df9642f12b05660ed34fa4c3223808908b458e6c860af05f75a4e27"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-6-3.jpg",
+      "bytes": 52348,
+      "sha256": "7c6111ea7df9642f12b05660ed34fa4c3223808908b458e6c860af05f75a4e27"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-7-2.jpg",
+      "bytes": 58240,
+      "sha256": "bf5691377b04c85a86f25d556cff846595afffe7c721b9fedfbc09338ff6f936"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-8-1.jpg",
+      "bytes": 60437,
+      "sha256": "36981e932b95432e2b52c219f6cb5b06e9cc87e46dcf1b0a9b5ef7b631d5d94f"
+    },
+    {
+      "path": "before-evidence/cases/viewer-update/screenshots/step-9-0.jpg",
+      "bytes": 60437,
+      "sha256": "36981e932b95432e2b52c219f6cb5b06e9cc87e46dcf1b0a9b5ef7b631d5d94f"
+    },
+    {
+      "path": "before-run.json",
+      "bytes": 16449,
+      "sha256": "35bc237c8eac3bcce9561db5902d109112088c08c8c31ff7378041f61527dbc9"
+    },
+    {
+      "path": "index.html",
+      "bytes": 45738,
+      "sha256": "c75ebd267448b3462c8476bb60c13022e80d1ebb28bc9fd6851ea51fb59bb74b"
+    },
+    {
+      "path": "original-policy.ts.txt",
+      "bytes": 792,
+      "sha256": "632b0d1fb28ca7544dff2d42b2140c375feaacade3f7da5081c1ef8ea542ca25"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1202,
+      "sha256": "28001b4a493d664b63df7e173f5bca49ac0f1f0501a6618c7c4a6375df545295"
+    },
+    {
+      "path": "repair-prompt.md",
+      "bytes": 3316,
+      "sha256": "3efa0766702f87fb7a9cbc38c777260361fe3b5607956373dea5af2d12f555cc"
+    },
+    {
+      "path": "repaired/cases/other-read/kane-events.ndjson",
+      "bytes": 2696,
+      "sha256": "97a06e18ce67359fbc1432e2ca945feaa1cc30a2022bd3ec9ff6a2bf4c87f4ca"
+    },
+    {
+      "path": "repaired/cases/other-read/screenshots/step-1-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/other-read/screenshots/step-2-6.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/other-read/screenshots/step-3-5.jpg",
+      "bytes": 45776,
+      "sha256": "72c6d53c002187d22e9d59110c562b8fcb160d66374e4915c4c224b10f90dd27"
+    },
+    {
+      "path": "repaired/cases/other-read/screenshots/step-4-4.jpg",
+      "bytes": 45776,
+      "sha256": "72c6d53c002187d22e9d59110c562b8fcb160d66374e4915c4c224b10f90dd27"
+    },
+    {
+      "path": "repaired/cases/other-read/screenshots/step-5-3.jpg",
+      "bytes": 35531,
+      "sha256": "9460cd8cde90afca29d542fab6afcb95589779651480fb7a54b03903a3ba8ac1"
+    },
+    {
+      "path": "repaired/cases/other-read/screenshots/step-6-2.jpg",
+      "bytes": 35531,
+      "sha256": "9460cd8cde90afca29d542fab6afcb95589779651480fb7a54b03903a3ba8ac1"
+    },
+    {
+      "path": "repaired/cases/other-read/screenshots/step-7-1.jpg",
+      "bytes": 35531,
+      "sha256": "9460cd8cde90afca29d542fab6afcb95589779651480fb7a54b03903a3ba8ac1"
+    },
+    {
+      "path": "repaired/cases/other-read/screenshots/step-8-0.jpg",
+      "bytes": 35531,
+      "sha256": "9460cd8cde90afca29d542fab6afcb95589779651480fb7a54b03903a3ba8ac1"
+    },
+    {
+      "path": "repaired/cases/owner-read/kane-events.ndjson",
+      "bytes": 2663,
+      "sha256": "d6268ed321c1f36f5ab0db42973b903ab9e4c0122031bef674e742fd94e20340"
+    },
+    {
+      "path": "repaired/cases/owner-read/screenshots/step-1-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/owner-read/screenshots/step-2-6.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/owner-read/screenshots/step-3-5.jpg",
+      "bytes": 45578,
+      "sha256": "76d8d8a1ab2cbd3b89ecea55d5e89ec62b2b9476b571cd6dc21c92cd18b26567"
+    },
+    {
+      "path": "repaired/cases/owner-read/screenshots/step-4-4.jpg",
+      "bytes": 45578,
+      "sha256": "76d8d8a1ab2cbd3b89ecea55d5e89ec62b2b9476b571cd6dc21c92cd18b26567"
+    },
+    {
+      "path": "repaired/cases/owner-read/screenshots/step-5-3.jpg",
+      "bytes": 38637,
+      "sha256": "1710906691621bf82fbfddba1d639dfc30caee875517c62fd4685802242aec53"
+    },
+    {
+      "path": "repaired/cases/owner-read/screenshots/step-6-2.jpg",
+      "bytes": 38637,
+      "sha256": "1710906691621bf82fbfddba1d639dfc30caee875517c62fd4685802242aec53"
+    },
+    {
+      "path": "repaired/cases/owner-read/screenshots/step-7-1.jpg",
+      "bytes": 38637,
+      "sha256": "1710906691621bf82fbfddba1d639dfc30caee875517c62fd4685802242aec53"
+    },
+    {
+      "path": "repaired/cases/owner-read/screenshots/step-8-0.jpg",
+      "bytes": 38637,
+      "sha256": "1710906691621bf82fbfddba1d639dfc30caee875517c62fd4685802242aec53"
+    },
+    {
+      "path": "repaired/cases/owner-update/kane-events.ndjson",
+      "bytes": 2941,
+      "sha256": "e7d00a73a230a9b160aab23a58e099e657cb90ba7b2629da6a444464465d14fe"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-1-8.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-2-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-3-6.jpg",
+      "bytes": 45578,
+      "sha256": "76d8d8a1ab2cbd3b89ecea55d5e89ec62b2b9476b571cd6dc21c92cd18b26567"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-4-5.jpg",
+      "bytes": 45578,
+      "sha256": "76d8d8a1ab2cbd3b89ecea55d5e89ec62b2b9476b571cd6dc21c92cd18b26567"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-5-4.jpg",
+      "bytes": 52348,
+      "sha256": "7c6111ea7df9642f12b05660ed34fa4c3223808908b458e6c860af05f75a4e27"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-6-3.jpg",
+      "bytes": 52348,
+      "sha256": "7c6111ea7df9642f12b05660ed34fa4c3223808908b458e6c860af05f75a4e27"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-7-2.jpg",
+      "bytes": 58097,
+      "sha256": "d1c20027b4fc64068ec34738e5a83404e8451aff33c1c61169cc83dcf8762678"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-8-1.jpg",
+      "bytes": 60271,
+      "sha256": "d9ca8fe53d4b1b692e4ccc8a32a1300f1248935cf98cde7aa49f4778b4d05fa6"
+    },
+    {
+      "path": "repaired/cases/owner-update/screenshots/step-9-0.jpg",
+      "bytes": 60271,
+      "sha256": "d9ca8fe53d4b1b692e4ccc8a32a1300f1248935cf98cde7aa49f4778b4d05fa6"
+    },
+    {
+      "path": "repaired/cases/viewer-read/kane-events.ndjson",
+      "bytes": 2626,
+      "sha256": "162dea141f70b844d6219c24ed71964184a24b5e00f00e05544df27fd3a8ef42"
+    },
+    {
+      "path": "repaired/cases/viewer-read/screenshots/step-1-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/viewer-read/screenshots/step-2-6.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/viewer-read/screenshots/step-3-5.jpg",
+      "bytes": 45529,
+      "sha256": "1e5ccb608a1b0b4e05d02c8b58e0fec7903a5112494821ab1df43a7a92d404c9"
+    },
+    {
+      "path": "repaired/cases/viewer-read/screenshots/step-4-4.jpg",
+      "bytes": 45529,
+      "sha256": "1e5ccb608a1b0b4e05d02c8b58e0fec7903a5112494821ab1df43a7a92d404c9"
+    },
+    {
+      "path": "repaired/cases/viewer-read/screenshots/step-5-3.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "repaired/cases/viewer-read/screenshots/step-6-2.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "repaired/cases/viewer-read/screenshots/step-7-1.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "repaired/cases/viewer-read/screenshots/step-8-0.jpg",
+      "bytes": 36922,
+      "sha256": "178f5d3aad7debc73b2ef996f8b5a2db78b8b93a1837e812060a9acf07105d72"
+    },
+    {
+      "path": "repaired/cases/viewer-update/kane-events.ndjson",
+      "bytes": 2922,
+      "sha256": "420a7b2ce7e49a7412229b150541390442c1cea745c43b833bd16cdfa4818ba0"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-1-8.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-2-7.jpg",
+      "bytes": 56150,
+      "sha256": "226e599635dd2616ac02e693a21ae1085b1f0c1b92122ed23d188429995e2185"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-3-6.jpg",
+      "bytes": 45529,
+      "sha256": "1e5ccb608a1b0b4e05d02c8b58e0fec7903a5112494821ab1df43a7a92d404c9"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-4-5.jpg",
+      "bytes": 45529,
+      "sha256": "1e5ccb608a1b0b4e05d02c8b58e0fec7903a5112494821ab1df43a7a92d404c9"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-5-4.jpg",
+      "bytes": 52348,
+      "sha256": "7c6111ea7df9642f12b05660ed34fa4c3223808908b458e6c860af05f75a4e27"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-6-3.jpg",
+      "bytes": 52348,
+      "sha256": "7c6111ea7df9642f12b05660ed34fa4c3223808908b458e6c860af05f75a4e27"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-7-2.jpg",
+      "bytes": 58159,
+      "sha256": "85e9b04d3acdc730d84ac6a05f7479baed8ee13d18d6448e9f727a02677799d4"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-8-1.jpg",
+      "bytes": 60730,
+      "sha256": "135801816126994e983da24d07e438476372b83f0b03046acd3483eca5ac57be"
+    },
+    {
+      "path": "repaired/cases/viewer-update/screenshots/step-9-0.jpg",
+      "bytes": 60730,
+      "sha256": "135801816126994e983da24d07e438476372b83f0b03046acd3483eca5ac57be"
+    },
+    {
+      "path": "repaired-policy.ts.txt",
+      "bytes": 708,
+      "sha256": "4b0facd079272d5349b4ef25a6bb59a854ab1e157c84fa00b54175f2af602f5b"
+    },
+    {
+      "path": "report-workflow/report/kane-events.ndjson",
+      "bytes": 4408,
+      "sha256": "28dca84573e4867694ee7b2c3f1ce9a30bc3b1ef5a0fcee744280aff9acc6c1a"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-1-14.jpg",
+      "bytes": 101632,
+      "sha256": "3b65305a416344339f4e807d8d2f1840cb687272353fc018ce5be0c13c7c7d69"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-10-5.jpg",
+      "bytes": 101632,
+      "sha256": "1086f0ed97eed9ebcda9eee7cb2c1be9a47d4374b64db318240c5fb56fc88b9f"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-11-4.jpg",
+      "bytes": 107645,
+      "sha256": "71bf941a7aef17f311f6892283db6284af08dfe80251423faa6b3d77d45443e9"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-12-3.jpg",
+      "bytes": 107645,
+      "sha256": "71bf941a7aef17f311f6892283db6284af08dfe80251423faa6b3d77d45443e9"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-13-2.jpg",
+      "bytes": 107645,
+      "sha256": "71bf941a7aef17f311f6892283db6284af08dfe80251423faa6b3d77d45443e9"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-14-1.jpg",
+      "bytes": 107645,
+      "sha256": "71bf941a7aef17f311f6892283db6284af08dfe80251423faa6b3d77d45443e9"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-15-0.jpg",
+      "bytes": 107645,
+      "sha256": "71bf941a7aef17f311f6892283db6284af08dfe80251423faa6b3d77d45443e9"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-2-13.jpg",
+      "bytes": 101632,
+      "sha256": "3b65305a416344339f4e807d8d2f1840cb687272353fc018ce5be0c13c7c7d69"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-3-12.jpg",
+      "bytes": 101786,
+      "sha256": "8687cc6ae887bbfc17e6298b9cc9129065b3a85d44ba90edce6597cedf9d9ac8"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-4-11.jpg",
+      "bytes": 101786,
+      "sha256": "8687cc6ae887bbfc17e6298b9cc9129065b3a85d44ba90edce6597cedf9d9ac8"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-5-10.jpg",
+      "bytes": 101786,
+      "sha256": "8687cc6ae887bbfc17e6298b9cc9129065b3a85d44ba90edce6597cedf9d9ac8"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-6-9.jpg",
+      "bytes": 101786,
+      "sha256": "8687cc6ae887bbfc17e6298b9cc9129065b3a85d44ba90edce6597cedf9d9ac8"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-7-8.jpg",
+      "bytes": 101786,
+      "sha256": "8687cc6ae887bbfc17e6298b9cc9129065b3a85d44ba90edce6597cedf9d9ac8"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-8-7.jpg",
+      "bytes": 101786,
+      "sha256": "8687cc6ae887bbfc17e6298b9cc9129065b3a85d44ba90edce6597cedf9d9ac8"
+    },
+    {
+      "path": "report-workflow/report/screenshots/step-9-6.jpg",
+      "bytes": 101786,
+      "sha256": "8687cc6ae887bbfc17e6298b9cc9129065b3a85d44ba90edce6597cedf9d9ac8"
+    },
+    {
+      "path": "run.json",
+      "bytes": 16421,
+      "sha256": "9f7e4fbdf7ba01593d156ba079390a5220251064567d7f70d29146a328e358ea"
+    },
+    {
+      "path": "summary.md",
+      "bytes": 685,
+      "sha256": "892a56349e2c1d913b61277632be0d5c9f7bc8eb560339b143170d2ea8670b5c"
+    },
+    {
+      "path": "workflow-proof.json",
+      "bytes": 3843,
+      "sha256": "361fc14569ca90a34e9e636fdc793d0a0e0f375290bbf8da53f3d9e521ca3cb8"
+    }
+  ]
+}

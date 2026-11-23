@@ -1,0 +1,25 @@
+{"type":"stream_start","cli_version":"0.10.6","surface":"run","v":1,"ts":"2026-11-22T22:12:44.158Z"}
+{"type":"recording_state","v":1,"ts":"2026-11-22T22:12:44.186Z"}
+{"type":"update_available","v":1,"ts":"2026-11-22T22:12:49.875Z"}
+{"type":"skill_update_available","v":1,"ts":"2026-11-22T22:12:49.905Z"}
+{"type":"bifurcation","v":1,"ts":"2026-11-22T22:13:40.350Z"}
+{"step":2,"status":"running","remark":"Step 1","v":1,"ts":"2026-11-22T22:13:51.071Z"}
+{"step":2,"status":"done","remark":"navigate: Navigate to http://127.0.0.1:53151/login","v":1,"ts":"2026-11-22T22:13:51.122Z"}
+{"step":3,"status":"running","remark":"Step 2","v":1,"ts":"2026-11-22T22:13:54.456Z"}
+{"step":3,"status":"done","remark":"click: Clicking Continue as Sam","v":1,"ts":"2026-11-22T22:14:12.353Z"}
+{"step":4,"status":"running","remark":"Step 3","v":1,"ts":"2026-11-22T22:14:15.308Z"}
+{"step":4,"status":"done","remark":"wait: PRIMARY: wait for the visible text \"Signed in as Sam\"","v":1,"ts":"2026-11-22T22:14:27.896Z"}
+{"step":5,"status":"running","remark":"Step 4","v":1,"ts":"2026-11-22T22:14:30.080Z"}
+{"step":5,"status":"done","remark":"wait: Waiting after confirming the visible text \"Signed in as Sam\"","v":1,"ts":"2026-11-22T22:14:35.503Z"}
+{"step":2,"status":"running","remark":"Step 1","v":1,"ts":"2026-11-22T22:14:51.518Z"}
+{"step":2,"status":"done","remark":"navigate: Navigate to http://127.0.0.1:53151/probe/documents/launch-plan?case=23eaa89a-f3f","v":1,"ts":"2026-11-22T22:14:51.579Z"}
+{"step":3,"status":"running","remark":"Step 2","v":1,"ts":"2026-11-22T22:15:04.862Z"}
+{"step":3,"status":"done","remark":"type: Typing Propose content in the Proposed content field","v":1,"ts":"2026-11-22T22:15:10.570Z"}
+{"step":4,"status":"running","remark":"Step 3","v":1,"ts":"2026-11-22T22:15:11.901Z"}
+{"step":4,"status":"done","remark":"click: Clicking Send update request button","v":1,"ts":"2026-11-22T22:15:18.462Z"}
+{"step":5,"status":"running","remark":"Step 4","v":1,"ts":"2026-11-22T22:15:20.825Z"}
+{"step":5,"status":"done","remark":"analyze: the visible result contains the exact text \"Update denied\"","v":1,"ts":"2026-11-22T22:15:42.227Z"}
+{"step":6,"status":"running","remark":"Step 5","v":1,"ts":"2026-11-22T22:15:44.360Z"}
+{"step":6,"status":"failed","remark":"assert: the visible result contains the exact text \"Update denied\"","v":1,"ts":"2026-11-22T22:15:44.794Z"}
+{"type":"coverage","status":"skipped","reason":"not_assurance_project","v":1,"ts":"2026-11-22T22:16:12.790Z"}
+{"type":"run_end","status":"failed","summary":"The permission check allowed a viewer to update the document instead of refusing the request.\nFix the document-update permission check so viewer identities receive a denial response and cannot change the document.\nevidence: objective_contradiction: PUT http://127.0.0.1:53151/api/documents/launch-plan -> 200\nevidence: objective_contradiction: Final verification failed: \"the visible result contains the exact text \"Update denied\"\"","reason":"Final verification failed: \"the visible result contains the exact text \"Update denied\"\"","duration":140.4,"credits_consumed":32.006229499999996,"v":1,"ts":"2026-11-22T22:16:12.791Z"}
