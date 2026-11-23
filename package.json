@@ -13,6 +13,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:vercel": "npm run build && node scripts/build-vercel.mjs",
+    "vercel-build": "npm run build:vercel",
     "check": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test dist/tests/*.test.js",
     "dev": "npm run build && node dist/src/cli.js dev",

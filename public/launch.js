@@ -11,7 +11,10 @@ let busy = false;
 async function request(method = 'GET', body) {
   const response = await fetch('/api/session', {method, credentials: 'same-origin', cache: 'no-store',
     ...(body ? {headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)} : {})});
-  const data = await response.json();
+  const unavailable = 'Live sessions could not be reached. Reload the page to try again.';
+  if (!response.headers.get('content-type')?.includes('application/json')) throw new Error(unavailable);
+  let data;
+  try {data = await response.json();} catch {throw new Error(unavailable);}
   if (!response.ok) throw new Error(data.error ?? 'The session could not be read.');
   return data;
 }
@@ -54,7 +57,7 @@ async function load() {
     clearTimeout(timer);
     form.hidden = false;
     status.textContent = error.message;
-    startButton.disabled = false;
+    startButton.disabled = true;
   }
 }
 form.addEventListener('submit', async event => {

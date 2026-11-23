@@ -20,6 +20,8 @@ Use a **personal Hobby workspace** for the $0 setup. [Sandbox Hobby quotas](http
 
 If GitHub access is not connected yet, use **Adjust GitHub App Permissions** to allow this repository.
 
+The repository's `vercel-build` hook also prepares the compiled session handler and commit metadata before Vercel traces the API Function. Keep this hook when changing build settings.
+
 ## Add environment variables
 
 Before clicking **Deploy**, add these for **Production**:

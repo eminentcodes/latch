@@ -22,8 +22,8 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm test
-      - name: Build the Vercel site and preserve recorded evidence
-        run: npm run build:vercel
+      - name: Build the Vercel site and function artifacts through its runtime hook
+        run: npm run vercel-build
       - name: Verify the configured fixture with the local development browser
         run: node dist/src/cli.js run --engine local --mode secure --out artifacts/pr-proof
       - name: Retain the browser report and proof on failure too
