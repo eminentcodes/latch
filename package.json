@@ -5,13 +5,14 @@
   "description": "A PR bot that catches permission bugs and proves the fix with Kane.",
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.19.0"
   },
   "bin": {
     "latch": "dist/src/cli.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "build:vercel": "npm run build && node scripts/build-vercel.mjs",
     "check": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test dist/tests/*.test.js",
     "dev": "npm run build && node dist/src/cli.js dev",
@@ -29,6 +30,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "@vercel/sandbox": "4.1.0",
     "fflate": "0.8.3",
     "zod": "4.6.7"
   },
@@ -39,6 +41,7 @@
     "typescript": "5.9.3"
   },
   "overrides": {
+    "@vercel/oidc": "4.0.9",
     "adm-zip": "0.6.1",
     "glob": "14.0.6",
     "minimatch": "11.0.9",

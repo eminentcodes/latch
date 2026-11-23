@@ -10,7 +10,7 @@ The demo is a running document-sharing application with two deliberate authoriza
 
 ## Try it
 
-Requires Node.js 22 or newer.
+Requires Node.js 22.19 or newer.
 
 ```sh
 git clone https://github.com/eminentcodes/latch.git
@@ -32,6 +32,12 @@ Open **http://127.0.0.1:4318**. The original app runs on port **4317** and the s
 The quick check uses Playwright. Choose **Kane CLI · native verification** to run Kane with your local Kane login and credits. The report identifies which engine produced each result. Checks reset the demo data between cases.
 
 Read the [judge guide](docs/judge-guide.md) for exact actions and how to check the evidence independently.
+
+## Host it on Vercel
+
+Follow the [Vercel setup guide](docs/vercel.md). Import this repository with **Other**, `npm run build:vercel` and output directory `public`; `vercel.json` supplies these settings. Add `LATCH_DEMO_ENABLED=true`, a judge access code in `LATCH_DEMO_ACCESS_CODE`, and a separate private `LATCH_SESSION_SECRET` in Vercel's Production environment.
+
+The website launches a bounded Vercel Sandbox with isolated original/repaired apps and real Chromium checks. Configure dedicated `LT_USERNAME`/`LT_ACCESS_KEY` and `LATCH_KANE_ENABLED=true` for native Kane. The quick check remains explicitly Playwright, and the saved native report is labeled recorded. Download fresh evidence with its hashes before the 45-minute session ends. The cloud adapter is locally tested; a deployed Sandbox/native run still needs verification.
 
 ## Recorded native proof
 
@@ -102,7 +108,7 @@ npm run validate
 npm run review:judge
 ```
 
-The suite includes 41 behavioral tests, an actual isolated browser repair, rejection of a deny-everyone patch, protected-input guards and credential redaction. The judge review tests manually entered content, permitted controls, fresh reports, screenshots, source provenance and mobile layout.
+The suite includes behavioral tests, an actual isolated browser repair, rejection of a deny-everyone patch, protected-input guards, cloud session/origin guards and credential redaction. The judge review tests manually entered content, permitted controls, fresh reports, screenshots, source provenance and mobile layout.
 
 The [local Actions workflow](.github/workflows/latch.yml) runs tests and configured browser permission checks, retains the evidence artifact and delivers same-repository PR results. [Native CI](.github/workflows/kane.yml) is opt-in through `LATCH_KANE_ENABLED=true` and dedicated `LT_USERNAME`/`LT_ACCESS_KEY` secrets. Local OAuth credentials are never published or copied to CI.
 

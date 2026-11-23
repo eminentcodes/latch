@@ -35,7 +35,7 @@ export type DemoServer = {
   close(): Promise<void>;
 };
 
-export async function startDemo(options: {port?: number; mode?: PolicyMode} = {}): Promise<DemoServer> {
+export async function startDemo(options: {port?: number; mode?: PolicyMode; host?: string} = {}): Promise<DemoServer> {
   const mode = options.mode ?? 'secure';
   let document = freshDocument();
   const observations: Observation[] = [];
@@ -101,7 +101,7 @@ export async function startDemo(options: {port?: number; mode?: PolicyMode} = {}
   });
   await new Promise<void>((resolve, reject) => {
     server.once('error', reject);
-    server.listen(options.port ?? 0, '127.0.0.1', resolve);
+    server.listen(options.port ?? 0, options.host ?? '127.0.0.1', resolve);
   });
   const address = server.address() as AddressInfo;
   return {

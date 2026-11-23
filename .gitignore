@@ -18,3 +18,9 @@ Thumbs.db
 /projectplan.md
 /projectplan.*.md
 /research/
+
+# Vercel account metadata and generated publication copies.
+/.vercel/
+/api/build-info.json
+/public/evidence/
+/public/build.json

@@ -11,7 +11,7 @@ import { runSuite } from './runner.js';
 import type { RunResult } from './types.js';
 import { fingerprintVerification, sameVerificationInputs } from './verification-inputs.js';
 
-const excluded = new Set(['.git', 'node_modules', 'dist', 'artifacts', '.cache', '.testmuai', '.auth']);
+const excluded = new Set(['.git', '.vercel', 'node_modules', 'dist', 'artifacts', '.cache', '.testmuai', '.auth']);
 export type Snapshot = Record<string, string>;
 export type RepairOptions = {projectRoot: string; runPath: string; contractPath: string; outputDir: string; allowed: string[]};
 const localPatchSchema = z.object({
@@ -54,7 +54,7 @@ export async function validateAllowedPaths(root: string, paths: readonly string[
     if (!absolute.startsWith(resolvedRoot + sep) || !(await stat(absolute)).isFile()) throw new Error('Repair paths must resolve to existing files inside the application workspace.');
     const normalized = relative(resolvedRoot, absolute).split('\\').join('/');
     if (normalized.split('/').some(part => excluded.has(part) || part === '.env' || part.startsWith('.env.'))
-      || ['src/', 'tests/', 'scripts/', 'examples/', 'research/', '.github/'].some(prefix => normalized.startsWith(prefix)) || ['demo/data.ts', 'demo/app.ts', 'demo/views.ts', 'package.json', 'package-lock.json', 'tsconfig.json', 'agent.md', 'AGENTS.md', 'projectplan.md'].includes(normalized)) {
+      || ['src/', 'tests/', 'scripts/', 'examples/', 'research/', '.github/', 'api/', 'public/'].some(prefix => normalized.startsWith(prefix)) || ['demo/data.ts', 'demo/app.ts', 'demo/views.ts', 'package.json', 'package-lock.json', 'tsconfig.json', 'vercel.json', 'agent.md', 'AGENTS.md', 'projectplan.md'].includes(normalized)) {
       throw new Error('Application repair cannot change the verifier, reviewed contract, fixture definitions, build configuration, or project instructions.');
     }
     allowed.push(normalized);

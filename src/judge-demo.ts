@@ -8,11 +8,13 @@ import { capture } from './process.js';
 import { guardedChanges, sourceSnapshot, validateLocalPatch } from './repair.js';
 import { serveWorkspace } from './server.js';
 import type { RunResult } from './types.js';
+import type { CloudWorkspace } from './workspace-page.js';
 import { fingerprintVerification, sameVerificationInputs } from './verification-inputs.js';
 
 export async function startJudgeDemo(options: {
   projectRoot: string; artifactsRoot?: string; patchPath?: string;
   port?: number; appPort?: number; repairedPort?: number;
+  host?: string; cloud?: CloudWorkspace;
 }): Promise<{url: string; original: DemoServer; repaired: DemoServer; close(): Promise<void>}> {
   const root = await realpath(options.projectRoot);
   const contractPath = join(root, 'examples/permissions.json');
@@ -56,13 +58,14 @@ export async function startJudgeDemo(options: {
   };
   await assertSources();
   const candidateApp = await import(pathToFileURL(join(candidate, 'dist/demo/app.js')).href) as {startDemo: typeof startDemo};
-  const original = await startDemo({port: options.appPort ?? 4317, mode: 'vulnerable'});
+  const original = await startDemo({port: options.appPort ?? 4317, mode: 'vulnerable', host: options.host ?? '127.0.0.1'});
   let repaired: DemoServer | null = null;
   try {
-    repaired = await candidateApp.startDemo({port: options.repairedPort ?? 4319, mode: 'vulnerable'});
+    repaired = await candidateApp.startDemo({port: options.repairedPort ?? 4319, mode: 'vulnerable', host: options.host ?? '127.0.0.1'});
     const workspace = await serveWorkspace({projectRoot: root,
       artifactsRoot: options.artifactsRoot ?? join(root, 'artifacts'), contractPath, fixture: original,
-      port: options.port ?? 4318, sourceRepair: {fixture: repaired, patch, repair, assertSources}});
+      port: options.port ?? 4318, host: options.host ?? '127.0.0.1', ...(options.cloud ? {cloud: options.cloud} : {}),
+      sourceRepair: {fixture: repaired, patch, repair, assertSources}});
     const repairedApp = repaired;
     return {url: workspace.url, original, repaired: repairedApp,
       close: async () => {await workspace.close(); await original.close(); await repairedApp.close();}};
