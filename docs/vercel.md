@@ -67,4 +67,4 @@ Each session has isolated apps and a serialized job. The comparison uses a revie
 - **Native Kane incomplete:** verify dedicated username/key validity and available Kane credits in TestMu. The quick check and recorded native proof have distinct engine labels.
 - **Preview asks for Vercel sign-in:** use the production URL for judges or adjust deployment protection in Vercel.
 
-The adapter is locally validated. Its actual Vercel Sandbox/browser/native execution must be checked after deployment; no hosted run is claimed before that verification.
+The public deployment's actual Sandbox, manual original/repaired reads and writes, permitted-user controls, fresh Chromium comparison, evidence ZIP hashes, and mobile report were independently verified at revision e725c48abcbbe2348d2af0cdfd829c6fd30cf696. That session was stopped afterward. Create a fresh session to reproduce the result. Production native Kane remains unconfigured; the earlier recorded native report has its own run IDs and input hashes.

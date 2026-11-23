@@ -22,6 +22,8 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm test
+      - name: Check the recorded evidence files and source-patch comparison
+        run: node scripts/verify-evidence.mjs evidence/native-repair
       - name: Build the Vercel site and function artifacts through its runtime hook
         run: npm run vercel-build
       - name: Verify the configured fixture with the local development browser

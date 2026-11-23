@@ -4,6 +4,8 @@ Latch checks a permission contract and verifies that a source repair enforces it
 
 ## Start the live demonstration
 
+Open [the public demo](https://latchtst.vercel.app/), click **Start live demo**, wait for preparation, and open your live workspace. No access code or sign-up is required. Download your evidence before ending the bounded session. The same steps below also work locally:
+
 ```sh
 npm ci
 npx playwright install chromium
@@ -92,6 +94,8 @@ The report button verifies a reviewed patch; it does not invoke Codex. The optio
 
 The useful result is observable: forbidden disclosure and mutation fail after a real source change, while permitted work succeeds. Missing results, missing evidence, browser assertion disagreements and tool errors retain their actual failure/incomplete states.
 
-The [previous-winner comparison](prior-art.md) cites the organizer's recap. GuardianKane is the closest confirmed winner by developer-workflow pattern; Bugsy is the closest permission-testing prior art, and its winner status is unconfirmed. Published descriptions of those projects have not been independently reproduced here.
+The [previous-winner comparison](prior-art.md) cites the organizer's recap. GuardianKane is a relevant confirmed winner by developer-workflow pattern. Published descriptions of previous projects have not been independently reproduced here.
+
+For downloaded live evidence, run `node scripts/verify-evidence.mjs path/to/latch-run.zip`. For the recorded native export, run `node scripts/verify-evidence.mjs evidence/native-repair`. The verifier checks all listed file hashes, complete cases, unchanged inputs, controls and source-patch hashes. Its manifest integrity check is separate from independently reproducing the behavior in a new browser session.
 
 The [official brief](https://www.kaneclihack.sh/) requires a working product, meaningful Kane proof and feedback to the coding agent. This local workflow demonstrates those steps through a file-patch handoff. Hosted automatic Codex repair and arbitrary-app integration remain extensions.

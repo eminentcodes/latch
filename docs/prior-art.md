@@ -24,8 +24,6 @@ Primary implementation reports also support both forbidden cases and permitted-u
 
 ## Existing permission tools
 
-[Bugsy](https://github.com/aayushkhator1994/bugsy) is the closest prior art. Its README describes an October 24 Kane CLI Hack Day SF project that tests cross-user invoice access, feeds failures to Codex, repeats Kane checks, preserves allowed-user controls and reverts the patch to test regression detection. Those ideas are shared with Latch and are credited. Bugsy's stated limitations and automation have been read, not independently reproduced here; its winner status is unconfirmed.
-
 [AuthMatrix](https://github.com/SecurityInnovation/AuthMatrix) and conventional browser tests already implement important permission-testing techniques. Latch does not claim to invent ownership checks or permission matrices. Its concrete additions are a reviewed permission contract, guarded application changes, fixed verification inputs, explicit incomplete states and an inspectable browser report. External-app adapters and retained-session removal remain proposed extensions.
 
 ## Confirmed previous Kane winners
@@ -42,7 +40,7 @@ These projects were researched through published descriptions. Their behavior wa
 
 ## Current event and feasibility
 
-The [KaneCLI Online Hackathon brief](https://www.kaneclihack.sh/) requires a working flow, meaningful Kane verification and feedback to the coding agent. It allows an old idea with a fresh codebase. The deadline is November 26 at 23:59 IST, **19:29 WAT**. A public repository, a 3–5 minute YouTube demo and two public posts are submission deliverables; a deployed URL is optional.
+The [KaneCLI Online Hackathon brief](https://www.kaneclihack.sh/) requires a working flow, meaningful Kane verification and feedback to the coding agent. It allows an old idea with a fresh codebase. The deadline is November 26 at 23:59 IST, **19:29 WAT**. A public repository, a YouTube demo and two public posts are submission deliverables; a deployed URL is optional.
 
 Latch uses a fresh TypeScript/Node codebase, Zod contracts, real browser requests, source-hash-bound patches, Kane evidence and GitHub Actions. [Kane documentation](https://www.testmuai.com/support/docs/kane-cli-introduction/) and the [upstream repository](https://github.com/LambdaTest/kane-cli) support the chosen browser/evidence approach. Feasibility is demonstrated by this repository's actual tests and recorded native runs, rather than inferred solely from documentation.
 
