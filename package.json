@@ -5,7 +5,7 @@
   "description": "A PR bot that catches permission bugs and proves the fix with Kane.",
   "type": "module",
   "engines": {
-    "node": ">=22.19.0"
+    "node": "22.x"
   },
   "bin": {
     "latch": "dist/src/cli.js"
@@ -31,7 +31,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
-    "@vercel/sandbox": "4.1.0",
+    "@vercel/sandbox": "4.0.0",
     "fflate": "0.8.3",
     "zod": "4.6.7"
   },

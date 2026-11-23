@@ -22,6 +22,8 @@ If GitHub access is not connected yet, use **Adjust GitHub App Permissions** to 
 
 The repository's `vercel-build` hook also prepares the compiled session handler and commit metadata before Vercel traces the API Function. Keep this hook when changing build settings.
 
+Node is pinned to `22.x`. Sandbox SDK `4.0.0` is pinned because `4.1.0` adds a Drives dependency that fails with `ERR_REQUIRE_ESM` in the deployed Function. The runtime regression test loads the real session handler with CommonJS-to-ES-module loading disabled and checks its HTTP response.
+
 ## Add environment variables
 
 Before clicking **Deploy**, add these for **Production**:
