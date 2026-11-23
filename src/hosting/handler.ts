@@ -11,6 +11,19 @@ export type CloudProvider = {
 };
 const provider: CloudProvider = {create: options => Sandbox.create(options), get: options => Sandbox.get(options)};
 
+class BootstrapFailure extends Error {
+  constructor(readonly details: string) {
+    super('The demo setup process stopped before its workspace started.');
+    this.name = 'BootstrapFailure';
+  }
+}
+function setupDetails(text: string, config: HostingConfig): string {
+  for (const value of [config.accessCode, config.sessionSecret, config.kaneUsername, config.kaneAccessKey].sort((a, b) => b.length - a.length)) {
+    if (value) text = text.split(value).join('[redacted]');
+  }
+  return text.slice(-3000);
+}
+
 function json(response: ServerResponse, status: number, value: unknown): void {
   response.writeHead(status, {'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'});
   response.end(JSON.stringify(value));
@@ -39,7 +52,7 @@ function links(sandbox: Connection) {
 }
 async function sessionStatus(sandbox: Connection, ticket: SessionTicket) {
   if (sandbox.status !== 'running') return {state: 'expired', message: 'This demo has ended. Start a new session.'};
-  const content = await sandbox.readFileToBuffer({path: '.cache/latch-cloud-state.json'}, {signal: AbortSignal.timeout(10_000)});
+  const content = await sandbox.readFileToBuffer({path: '.cache/latch-cloud-state.json', cwd: sandbox.cwd}, {signal: AbortSignal.timeout(10_000)});
   let state: {state: string; message: string} = {state: 'starting', message: 'Preparing your isolated demo.'};
   if (content && content.length < 4096) {
     const parsed = JSON.parse(content.toString()) as {state?: unknown; message?: unknown};
@@ -109,8 +122,13 @@ export async function handleSession(request: IncomingMessage, response: ServerRe
       LATCH_KANE_ENABLED: String(config.kaneEnabled)};
     if (config.kaneEnabled) {commandEnv.LT_USERNAME = config.kaneUsername; commandEnv.LT_ACCESS_KEY = config.kaneAccessKey;}
     try {
-      await sandbox.runCommand({cmd: 'node', args: ['scripts/sandbox-bootstrap.mjs'], cwd: sandbox.cwd, detached: true,
+      const bootstrap = await sandbox.runCommand({cmd: 'node', args: ['scripts/sandbox-bootstrap.mjs'], cwd: sandbox.cwd, detached: true,
         env: commandEnv, signal: AbortSignal.timeout(10_000)});
+      const startupWindow = AbortSignal.timeout(2000);
+      let ended;
+      try {ended = await bootstrap.wait({signal: startupWindow});}
+      catch (error) {if (!startupWindow.aborted) throw error;}
+      if (ended) throw new BootstrapFailure(setupDetails(await ended.stderr(), config) || `Setup ended with exit code ${ended.exitCode}.`);
     } catch (error) {
       await sandbox.stop({signal: AbortSignal.timeout(10_000)}).catch(() => undefined);
       throw error;
@@ -121,6 +139,7 @@ export async function handleSession(request: IncomingMessage, response: ServerRe
   } catch (error) {
     console.error('Latch Sandbox request failed.', {type: error instanceof Error ? error.name : 'Error',
       status: error && typeof error === 'object' && 'status' in error ? error.status : undefined});
-    json(response, 502, {error: 'Vercel Sandbox could not complete this request. The owner can check the project runtime logs and Sandbox allowance.'});
+    json(response, 502, error instanceof BootstrapFailure ? {error: error.message, details: error.details}
+      : {error: 'Vercel Sandbox could not complete this request. The owner can check the project runtime logs and Sandbox allowance.'});
   }
 }

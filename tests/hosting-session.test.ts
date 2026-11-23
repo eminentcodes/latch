@@ -9,6 +9,32 @@ const ref = 'a'.repeat(40);
 const code = 'a-private-judge-code';
 const secret = 'an-owner-only-session-signing-key-with-entropy';
 
+test('an early setup process failure is reported, redacted and stopped instead of waiting indefinitely', async () => {
+  const signingKey = secret + code;
+  let stopped = 0;
+  const connection = {name: 'latch-judge-test', status: 'running', cwd: '/vercel',
+    domain: (port: number) => `https://port-${port}.sandbox.test`,
+    runCommand: async () => ({wait: async () => ({exitCode: 1,
+      stderr: async () => `Cannot find the bootstrap module. ${code} ${signingKey}`})}),
+    stop: async () => {stopped++;}} as unknown as Awaited<ReturnType<CloudProvider['create']>>;
+  const cloud: CloudProvider = {create: async () => connection, get: async () => {throw new Error('Unexpected lookup');}};
+  const env = {LATCH_DEMO_ENABLED: 'true', LATCH_DEMO_ACCESS_CODE: code, LATCH_SESSION_SECRET: signingKey};
+  const server = createServer((request, response) => {void handleSession(request, response, {sourceRef: ref, env, cloud});});
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
+  const url = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
+  try {
+    const response = await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json', Origin: url}, body: JSON.stringify({accessCode: code})});
+    assert.equal(response.status, 502);
+    const data = await response.json() as {error: string; details: string};
+    assert.equal(data.error, 'The demo setup process stopped before its workspace started.');
+    assert.ok(data.details.includes('Cannot find the bootstrap module.'));
+    assert.ok(!data.details.includes(code));
+    assert.ok(!data.details.includes(secret));
+    assert.equal(response.headers.get('set-cookie'), null);
+    assert.equal(stopped, 1);
+  } finally {await new Promise<void>(resolve => {server.close(() => resolve()); server.closeAllConnections();});}
+});
+
 test('cloud sessions require explicit enabling, a long access code and a published revision', () => {
   assert.equal(hostingConfig({}, ref, 'https://latch.test').enabled, false);
   assert.equal(hostingConfig({LATCH_DEMO_ENABLED: 'true', LATCH_DEMO_ACCESS_CODE: 'short'}, ref, 'https://latch.test').enabled, false);
